@@ -1,0 +1,45 @@
+*{
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#tetris{
+    margin: auto;
+    width:300px;
+    text-align: center;
+    color: blanchedalmond;
+}
+
+#buttons{
+    margin: auto;
+    margin-bottom: 30px;
+    width:300px;
+    text-align: center;
+}
+
+#container{
+    background-color:rgb(255, 255, 255);
+    width:300px;
+    height: 600px;
+    margin: auto;
+}
+
+
+#play-btn{
+    background-color:cornsilk;
+    width:100px;
+    height: 30px;
+}
+
+#play-btn:hover{
+    background-color:rgb(250, 237, 185);
+    width:120px;
+    height: 35px;
+}
+
+#play-btn:active{
+    background-color:rgb(184, 173, 133);
+    width:100px;
+    height: 30px;
+}

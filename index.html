@@ -5,160 +5,24 @@
     <head>
         <title>Tetris</title>
        
-        <link rel="stylesheet" href="styles/shipLegend.css">
+        <link rel="stylesheet" href="styles/style.css">
     </head>
 
     <body>
+        <div id="tetris">
 
-        <h1 id="battleship">
-            Battleship
+        <h1 >
+            Tetris
         </h1>
+    </div>
+    <div id="buttons">
 
-        <button id="random-btn" onclick="randomShipsOnClick()">Random</button>
-        <button id="reset-btn" onclick="resetShipsOnClick()">Reset</button>
-        <button id="play-btn" onclick="playOnClick()">Play</button>
-        <button id="quit-btn" class="disappeared" onclick="quitOnClick()">Quit</button>
+          <button id="play-btn" onclick="playOnClick()">Play</button>
+    </div >
 
         <div id="container">
-            <button id="rotate-btn" onclick="rotateShipOnClick()">Rotate</button>
-            <div class="ships-to-drag">
-
-                <div id="sd4" class="ship-left ship4-left" onclick="chooseShip(id)"   >
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-                <div id="sd3a" class="ship-left ship3-left"  onclick="chooseShip(id)">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-                <div id="sd3b" class="ship-left ship3-left"  onclick="chooseShip(id)">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-
-                <div id="sd2a" class="ship-left ship2-left"  onclick="chooseShip(id)">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-                <div id="sd2b" class="ship-left ship2-left"  onclick="chooseShip(id)">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-                <div id="sd2c" class="ship-left ship2-left"  onclick="chooseShip(id)">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-
-                <div class="ship-left ship1-left" id="sd1a"  onclick="chooseShip(id)">
-                    <div class="ship-left-square"></div>
-                </div>
-                <div class="ship-left ship1-left" id="sd1b"  onclick="chooseShip(id)">
-                    <div class="ship-left-square"></div>
-                </div>
-                <div class="ship-left ship1-left" id="sd1c"  onclick="chooseShip(id)">
-                    <div class="ship-left-square"></div>
-                </div>
-                <div class="ship-left ship1-left" id="sd1d"  onclick="chooseShip(id)">
-                    <div class="ship-left-square"></div>
-                </div>
-            </div>
-            <div class="ships-left disappeared">
-
-                <div id="s4" class="ship-left ship4-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-                <div id="s3a" class="ship-left ship3-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-                <div id="s3b" class="ship-left ship3-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-
-                <div id="s2a" class="ship-left ship2-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-                <div id="s2b" class="ship-left ship2-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-                <div id="s2c" class="ship-left ship2-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-
-                <div class="ship-left ship1-left" id="s1a">
-                    <div class="ship-left-square"></div>
-                </div>
-                <div class="ship-left ship1-left" id="s1b">
-                    <div class="ship-left-square"></div>
-                </div>
-                <div class="ship-left ship1-left" id="s1c">
-                    <div class="ship-left-square"></div>
-                </div>
-                <div class="ship-left ship1-left" id="s1d">
-                    <div class="ship-left-square"></div>
-                </div>
-            </div>
-
-            <div class="ships-left-oponent disappeared">
-
-                <div id="so4" class="ship-left ship4-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-
-                <div id="so3a" class="ship-left ship3-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-                <div id="so3b" class="ship-left ship3-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-
-                <div id="so2a" class="ship-left ship2-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-                <div id="so2b" class="ship-left ship2-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-                <div id="so2c" class="ship-left ship2-left">
-                    <div class="ship-left-square"></div>
-                    <div class="ship-left-square"></div>
-                </div>
-
-                <div class="ship-left ship1-left" id="so1a">
-                    <div class="ship-left-square"></div>
-                </div>
-                <div class="ship-left ship1-left" id="so1b">
-                    <div class="ship-left-square"></div>
-                </div>
-                <div class="ship-left ship1-left" id="so1c">
-                    <div class="ship-left-square"></div>
-                </div>
-                <div class="ship-left ship1-left" id="so1d">
-                    <div class="ship-left-square"></div>
-                </div>
-            </div>
+           
         </div>
-        <script src="scripts/script.js"></script>
+        <script src="script.js"></script>
     </body>
 </html>
