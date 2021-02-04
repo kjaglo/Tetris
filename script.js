@@ -41,3 +41,25 @@ matrixMain.draw();
 matrixMain.sideLeft(0)
 matrixMain.sideRight(0)
 matrixMain.sideBottom(0)
+
+
+document.addEventListener("keydown", function(event) {
+    console.log(event.which);
+  })
+
+  
+document.addEventListener("keyup", function(event) {
+    console.log("up");
+  })
+
+
+  
+document.addEventListener("keyleft", function(event) {
+    console.log("left");
+  })
+
+  
+document.addEventListener("keyright", function(event) {
+    console.log("right");
+  })
+
