@@ -43,23 +43,32 @@ matrixMain.sideRight(0)
 matrixMain.sideBottom(0)
 
 
-document.addEventListener("keydown", function(event) {
-    console.log(event.which);
-  })
+document.addEventListener("keydown", function (event) {
+    console.log(event.key)
+    switch (event.key) {
+        case "ArrowUp":
+            console.log("Up")
+            break;
+        case "ArrowDown":
+            console.log("Down")
+            break;
+        case "ArrowLeft":
+            console.log("Left")
+            break;
+        case "ArrowRight":
+            console.log("Right")
+            break;
+        case " ":
+            console.log("Space")
+            break;
+        case "Escape":
+            console.log("Esc")
+            break;
+    }
 
-  
-document.addEventListener("keyup", function(event) {
-    console.log("up");
-  })
+})
 
+playOnClick = () => {
 
-  
-document.addEventListener("keyleft", function(event) {
-    console.log("left");
-  })
-
-  
-document.addEventListener("keyright", function(event) {
-    console.log("right");
-  })
-
+    console.log("pplay")
+}
