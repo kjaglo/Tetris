@@ -64,27 +64,36 @@ class Piece {
         this.positionY = 0;
         this.area = new Matrix(4, 4);
         this.type = Math.round(Math.random() * 10) % 7;
+        this.area[0,0]=1
     }
 
     moveRight() {
         this.positionX = this.positionX + 1;
         console.log("move Right")
+        console.log(this.area)
     }
 
     moveLeft() {
         this.positionX = this.positionX - 1;
         console.log("move Left")
+        console.log(this.area)
+
     }
 
     moveUp() {
         this.positionY = this.positionY - 1;
         console.log("move Up")
+        console.log(this.area)
+
     }
 
     moveDown() {
         this.positionY = this.positionY + 1;
         console.log("move Down")
+        console.log(this.area)
+
     }
+
 
 }
 
