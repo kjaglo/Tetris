@@ -48,6 +48,20 @@ class Matrix {
             console.log("bottom");
         }
     }
+
+
+
+    matrixDraw() {
+
+        for (let row = 0; row < this.sizeX; row++) {
+            for (let col = 0; col < this.sizeY; col++) {
+                document.querySelector("#test").innerHTML+=this.matrix01[row][col];
+            }
+            document.querySelector("#test").innerHTML+= "<br />"
+
+        }
+        
+    }
 }
 
 const matrixMain = new Matrix(20, 10);
@@ -94,6 +108,16 @@ class Piece {
 
     }
 
+    matrixDraw() {
+
+        for (let row = 0; row < this.area.sizeX; row++) {
+            for (let col = 0; col < this.area.sizeY; col++) {
+                document.querySelector("#test").innerHTML+=this.area.sizeX;
+            }
+            document.querySelector("#test").innerHTML+= "<br />"
+
+
+        }}
 
 }
 
@@ -102,6 +126,7 @@ const pieceCurrent = new Piece();
 
 
 document.addEventListener("keydown", function (event) {
+    pieceCurrent.matrixDraw();
     console.log(event.key)
     switch (event.key) {
         case "ArrowUp":
@@ -139,4 +164,5 @@ playOnClick = () => {
 }
 
 
-
+matrixMain.matrixDraw();
+// document.querySelector("#test").innerHTML=matrixMain.matrix01
