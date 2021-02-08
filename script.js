@@ -51,6 +51,15 @@ class Matrix {
 
 
 
+    matrixReset() {
+
+        for (let row = 0; row < this.sizeX; row++) {
+            for (let col = 0; col < this.sizeY; col++) {
+                this.matrix01[row][col]=0;
+            }
+        }
+        
+    }
     matrixDraw() {
 
         for (let row = 0; row < this.sizeX; row++) {
@@ -77,8 +86,10 @@ class Piece {
         this.positionX = 0;
         this.positionY = 0;
         this.area = new Matrix(4, 4);
+        this.area.draw01()
         this.type = Math.round(Math.random() * 10) % 7;
-        this.area[0,0]=1
+        this.area.matrix01[0][0]=1
+
     }
 
     moveRight() {
@@ -108,16 +119,37 @@ class Piece {
 
     }
 
+
+    matrixReset() {
+
+        for (let row = 0; row < this.area.sizeX; row++) {
+            for (let col = 0; col < this.area.sizeY; col++) {
+                this.area.matrix01[row][col]=0;
+            }
+        }
+        
+    }
+
+    
+    update() {
+        this.area.matrixReset()
+        this.area.matrix01[this.positionY][this.positionX]=1;
+
+    }
+
     matrixDraw() {
 
         for (let row = 0; row < this.area.sizeX; row++) {
             for (let col = 0; col < this.area.sizeY; col++) {
-                document.querySelector("#test").innerHTML+=this.area.sizeX;
+                document.querySelector("#test").innerHTML+=this.area.matrix01[row][col];
             }
             document.querySelector("#test").innerHTML+= "<br />"
 
 
-        }}
+        }
+        document.querySelector("#test").innerHTML+= "<br />"
+
+    }
 
 }
 
@@ -126,6 +158,7 @@ const pieceCurrent = new Piece();
 
 
 document.addEventListener("keydown", function (event) {
+    pieceCurrent.update()
     pieceCurrent.matrixDraw();
     console.log(event.key)
     switch (event.key) {
