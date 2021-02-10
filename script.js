@@ -136,9 +136,18 @@ class Piece {
         this.area.matrix01[this.positionY][this.positionX]=1;
 
     }
-
+  
+    
+   
+    
     matrixDraw() {
-
+        if (document.querySelector("#test")) {
+            document.querySelector("#test").remove();
+        }
+        const body = document.getElementsByTagName('body')[0];
+        const area = document.createElement('div');
+        area.id = "test";
+        body.appendChild(area);
         for (let row = 0; row < this.area.sizeX; row++) {
             for (let col = 0; col < this.area.sizeY; col++) {
                 document.querySelector("#test").innerHTML+=this.area.matrix01[row][col];
@@ -158,9 +167,7 @@ const pieceCurrent = new Piece();
 
 
 document.addEventListener("keydown", function (event) {
-    pieceCurrent.update()
-    pieceCurrent.matrixDraw();
-    console.log(event.key)
+
     switch (event.key) {
         case "ArrowUp":
             console.log("Up")
@@ -188,6 +195,9 @@ document.addEventListener("keydown", function (event) {
             console.log("Esc")
             break;
     }
+    pieceCurrent.update()
+    pieceCurrent.matrixDraw();
+    console.log(event.key)
 
 })
 
