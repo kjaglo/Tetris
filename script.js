@@ -93,30 +93,41 @@ class Piece {
     }
 
     moveRight() {
+        if(this.positionX!==3)
+{
         this.positionX = this.positionX + 1;
         console.log("move Right")
         console.log(this.area)
     }
+}
 
     moveLeft() {
+        if(this.positionX!==0){
+
         this.positionX = this.positionX - 1;
         console.log("move Left")
         console.log(this.area)
+    }
 
     }
 
     moveUp() {
+        if(this.positionY!==0){
+
         this.positionY = this.positionY - 1;
         console.log("move Up")
         console.log(this.area)
+        }
 
     }
 
     moveDown() {
+        if(this.positionY!==3){
+
         this.positionY = this.positionY + 1;
         console.log("move Down")
         console.log(this.area)
-
+        }
     }
 
 
@@ -132,6 +143,7 @@ class Piece {
 
     
     update() {
+
         this.area.matrixReset()
         this.area.matrix01[this.positionY][this.positionX]=1;
 
