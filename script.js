@@ -17,6 +17,7 @@ class Matrix {
         }
         console.log(this.matrix);
     }
+    
     draw01() {
         for (let row = 0; row <
             this.sizeX; row++) {
@@ -47,8 +48,6 @@ class Matrix {
         }
     }
 
-
-
     matrixReset() {
 
         for (let row = 0; row < this.sizeX; row++) {
@@ -57,6 +56,7 @@ class Matrix {
             }
         }
     }
+
     matrixDraw() {
 
         for (let row = 0; row < this.sizeX; row++) {
@@ -134,7 +134,6 @@ class Piece {
 
         this.area.matrixReset()
         this.area.matrix01[this.positionY][this.positionX] = 1;
-
     }
 
     matrixDraw() {
@@ -190,9 +189,7 @@ document.addEventListener("keydown", function (event) {
 })
 
 playOnClick = () => {
-    console.log("pplay")
+    console.log("play")
 }
 
-
 matrixMain.matrixDraw();
-// document.querySelector("#test").innerHTML=matrixMain.matrix01
