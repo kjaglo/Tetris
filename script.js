@@ -1,5 +1,3 @@
-
-
 class Matrix {
 
     constructor(sizeX, sizeY) {
@@ -55,28 +53,24 @@ class Matrix {
 
         for (let row = 0; row < this.sizeX; row++) {
             for (let col = 0; col < this.sizeY; col++) {
-                this.matrix01[row][col]=0;
+                this.matrix01[row][col] = 0;
             }
         }
-        
     }
     matrixDraw() {
 
         for (let row = 0; row < this.sizeX; row++) {
             for (let col = 0; col < this.sizeY; col++) {
-                document.querySelector("#test").innerHTML+=this.matrix01[row][col];
+                document.querySelector("#test").innerHTML += this.matrix01[row][col];
             }
-            document.querySelector("#test").innerHTML+= "<br />"
-
+            document.querySelector("#test").innerHTML += "<br />"
         }
-        
     }
 }
 
 const matrixMain = new Matrix(20, 10);
 matrixMain.draw();
 matrixMain.draw01();
-
 matrixMain.sideLeft(0)
 matrixMain.sideRight(0)
 matrixMain.sideBottom(0)
@@ -88,45 +82,40 @@ class Piece {
         this.area = new Matrix(4, 4);
         this.area.draw01()
         this.type = Math.round(Math.random() * 10) % 7;
-        this.area.matrix01[0][0]=1
-
+        this.area.matrix01[0][0] = 1
     }
 
     moveRight() {
-        if(this.positionX!==3)
-{
-        this.positionX = this.positionX + 1;
-        console.log("move Right")
-        console.log(this.area)
+        if (this.positionX !== 3) {
+            this.positionX = this.positionX + 1;
+            console.log("move Right")
+            console.log(this.area)
+        }
     }
-}
 
     moveLeft() {
-        if(this.positionX!==0){
-
-        this.positionX = this.positionX - 1;
-        console.log("move Left")
-        console.log(this.area)
-    }
+        if (this.positionX !== 0) {
+            this.positionX = this.positionX - 1;
+            console.log("move Left")
+            console.log(this.area)
+        }
 
     }
 
     moveUp() {
-        if(this.positionY!==0){
-
-        this.positionY = this.positionY - 1;
-        console.log("move Up")
-        console.log(this.area)
+        if (this.positionY !== 0) {
+            this.positionY = this.positionY - 1;
+            console.log("move Up")
+            console.log(this.area)
         }
 
     }
 
     moveDown() {
-        if(this.positionY!==3){
-
-        this.positionY = this.positionY + 1;
-        console.log("move Down")
-        console.log(this.area)
+        if (this.positionY !== 3) {
+            this.positionY = this.positionY + 1;
+            console.log("move Down")
+            console.log(this.area)
         }
     }
 
@@ -135,23 +124,19 @@ class Piece {
 
         for (let row = 0; row < this.area.sizeX; row++) {
             for (let col = 0; col < this.area.sizeY; col++) {
-                this.area.matrix01[row][col]=0;
+                this.area.matrix01[row][col] = 0;
             }
         }
-        
     }
 
-    
+
     update() {
 
         this.area.matrixReset()
-        this.area.matrix01[this.positionY][this.positionX]=1;
+        this.area.matrix01[this.positionY][this.positionX] = 1;
 
     }
-  
-    
-   
-    
+
     matrixDraw() {
         if (document.querySelector("#test")) {
             document.querySelector("#test").remove();
@@ -162,21 +147,15 @@ class Piece {
         body.appendChild(area);
         for (let row = 0; row < this.area.sizeX; row++) {
             for (let col = 0; col < this.area.sizeY; col++) {
-                document.querySelector("#test").innerHTML+=this.area.matrix01[row][col];
+                document.querySelector("#test").innerHTML += this.area.matrix01[row][col];
             }
-            document.querySelector("#test").innerHTML+= "<br />"
-
-
+            document.querySelector("#test").innerHTML += "<br />"
         }
-        document.querySelector("#test").innerHTML+= "<br />"
-
+        document.querySelector("#test").innerHTML += "<br />"
     }
-
 }
 
 const pieceCurrent = new Piece();
-
-
 
 document.addEventListener("keydown", function (event) {
 
@@ -188,17 +167,14 @@ document.addEventListener("keydown", function (event) {
         case "ArrowDown":
             console.log("Down")
             pieceCurrent.moveDown();
-
             break;
         case "ArrowLeft":
             console.log("Left")
             pieceCurrent.moveLeft();
-
             break;
         case "ArrowRight":
             console.log("Right")
             pieceCurrent.moveRight();
-
             break;
         case " ":
             console.log("Space")
@@ -214,7 +190,6 @@ document.addEventListener("keydown", function (event) {
 })
 
 playOnClick = () => {
-
     console.log("pplay")
 }
 
