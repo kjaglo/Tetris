@@ -66,7 +66,9 @@ class Matrix {
             document.querySelector("#test").innerHTML += "<br />"
         }
     }
+
 }
+
 
 const matrixMain = new Matrix(20, 10);
 matrixMain.draw();
@@ -94,7 +96,7 @@ class Piece {
         this.area.draw01()
         this.shape = Math.round(Math.random() * 10) % 7;
         console.log("random shape:", this.shape)
-       // this.area.matrix01[0][0] = 1
+        // this.area.matrix01[0][0] = 1
     }
     shapeCreate() {
         this.area.matrixReset()
@@ -207,6 +209,8 @@ class Piece {
 }
 
 const pieceCurrent = new Piece();
+pieceCurrent.shapeCreate();
+
 document.addEventListener("keydown", function (event) {
 
     switch (event.key) {
@@ -248,5 +252,32 @@ playOnClick = () => {
     console.log("play")
 }
 
-matrixMain.matrixDraw();
+placePiece = () => {
+    for (let row = 0; row < matrixMain.sizeX; row++) {
+        for (let col = 0; col < matrixMain.sizeY; col++) {
+            if (pieceCurrent.positionX === row && pieceCurrent.positionY == col) {
+                for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
+                    for (let colPiece = 0; colPiece < 4; colPiece++) {
 
+                        if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
+                            matrixMain.matrix01[row + rowPiece][col + colPiece] = 3;
+                            console.log("tak")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+placePiece()
+matrixMain.matrixDraw();
+for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
+    for (let colPiece = 0; colPiece < 4; colPiece++) {
+            console.log(pieceCurrent.area.matrix01)
+
+        if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
+            matrixMain.matrix01[rowPiece][ colPiece] = 3;
+        }
+    }
+}
