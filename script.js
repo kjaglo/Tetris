@@ -57,14 +57,34 @@ class Matrix {
         }
     }
 
+    // matrixDraw() {
+    //     //this.matrixReset();
+    //     for (let row = 0; row < this.sizeX; row++) {
+    //         for (let col = 0; col < this.sizeY; col++) {
+    //             document.querySelector("#test").innerHTML += this.matrix01[row][col];
+    //         }
+    //         document.querySelector("#test").innerHTML += "<br />"
+    //     }
+    // }
+    update() {
+        this.matrixReset()
+    }
     matrixDraw() {
 
+        if (document.querySelector("#test")) {
+            document.querySelector("#test").remove();
+        }
+        const body = document.getElementsByTagName('body')[0];
+        const matrix = document.createElement('div');
+        matrix.id = "test";
+        body.appendChild(matrix);
         for (let row = 0; row < this.sizeX; row++) {
             for (let col = 0; col < this.sizeY; col++) {
                 document.querySelector("#test").innerHTML += this.matrix01[row][col];
             }
             document.querySelector("#test").innerHTML += "<br />"
         }
+        document.querySelector("#test").innerHTML += "<br />"
     }
 
 }
@@ -139,16 +159,16 @@ class Piece {
         }
     }
     moveRight() {
-        if (this.positionX !== 3) {
-            this.positionX = this.positionX + 1;
+        if (this.positionY !== 6) {
+            this.positionY = this.positionY + 1;
             console.log("move Right")
             console.log(this.area)
         }
     }
 
     moveLeft() {
-        if (this.positionX !== 0) {
-            this.positionX = this.positionX - 1;
+        if (this.positionY !== 0) {
+            this.positionY = this.positionY - 1;
             console.log("move Left")
             console.log(this.area)
         }
@@ -156,8 +176,8 @@ class Piece {
     }
 
     moveUp() {
-        if (this.positionY !== 0) {
-            this.positionY = this.positionY - 1;
+        if (this.positionX !== 0) {
+            this.positionX = this.positionX - 1;
             console.log("move Up")
             console.log(this.area)
         }
@@ -165,8 +185,8 @@ class Piece {
     }
 
     moveDown() {
-        if (this.positionY !== 3) {
-            this.positionY = this.positionY + 1;
+        if (this.positionX !== 16) {
+            this.positionX = this.positionX + 1;
             console.log("move Down")
             console.log(this.area)
         }
@@ -208,50 +228,6 @@ class Piece {
     }
 }
 
-const pieceCurrent = new Piece();
-pieceCurrent.shapeCreate();
-
-document.addEventListener("keydown", function (event) {
-
-    switch (event.key) {
-        case "ArrowUp":
-            console.log("Up")
-            // pieceCurrent.moveUp();
-
-            break;
-        case "ArrowDown":
-            console.log("Down")
-            // pieceCurrent.moveDown();
-            break;
-        case "ArrowLeft":
-            console.log("Left")
-            // pieceCurrent.moveLeft();
-            break;
-        case "ArrowRight":
-            console.log("Right")
-            // pieceCurrent.moveRight();
-            break;
-        case " ":
-            console.log("Space")
-            break;
-        case "Escape":
-            console.log("Esc")
-            break;
-        case "p":
-            pieceCurrent.shapeCreate()
-
-            break;
-    }
-    //pieceCurrent.update()
-    pieceCurrent.matrixDraw();
-    console.log(event.key)
-
-})
-
-playOnClick = () => {
-    console.log("play")
-}
-
 placePiece = () => {
     for (let row = 0; row < matrixMain.sizeX; row++) {
         for (let col = 0; col < matrixMain.sizeY; col++) {
@@ -269,9 +245,55 @@ placePiece = () => {
         }
     }
 }
-
+const pieceCurrent = new Piece();
+pieceCurrent.shapeCreate();
 placePiece()
 matrixMain.matrixDraw();
+document.addEventListener("keydown", function (event) {
+
+    switch (event.key) {
+        case "ArrowUp":
+            console.log("Up")
+             pieceCurrent.moveUp();
+
+            break;
+        case "ArrowDown":
+            console.log("Down")
+            pieceCurrent.moveDown();
+            break;
+        case "ArrowLeft":
+            console.log("Left")
+             pieceCurrent.moveLeft();
+            break;
+        case "ArrowRight":
+            console.log("Right")
+             pieceCurrent.moveRight();
+            break;
+        case " ":
+            console.log("Space")
+            break;
+        case "Escape":
+            console.log("Esc")
+            break;
+        case "p":
+            pieceCurrent.shapeCreate()
+
+            break;
+    }
+    matrixMain.update()
+    placePiece()
+    matrixMain.matrixDraw();
+
+    console.log(event.key)
+
+})
+
+playOnClick = () => {
+    console.log("play")
+}
+
+
+
 for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
     for (let colPiece = 0; colPiece < 4; colPiece++) {
             console.log(pieceCurrent.area.matrix01)
