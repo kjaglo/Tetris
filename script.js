@@ -172,7 +172,6 @@ class Piece {
             console.log("move Left")
             console.log(this.area)
         }
-
     }
 
     moveUp() {
@@ -181,7 +180,6 @@ class Piece {
             console.log("move Up")
             console.log(this.area)
         }
-
     }
 
     moveDown() {
@@ -228,7 +226,25 @@ class Piece {
     }
 }
 
-placePiece = () => {
+playOnClick = () => {
+    matrixMain.update()
+
+    console.log("play")
+    const pieceCurrent = new Piece();
+pieceCurrent.shapeCreate();
+placePiece(pieceCurrent)
+matrixMain.matrixDraw();
+for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
+    for (let colPiece = 0; colPiece < 4; colPiece++) {
+            console.log(pieceCurrent.area.matrix01)
+
+        if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
+            matrixMain.matrix01[rowPiece][ colPiece] = 3;
+        }
+    }
+}
+}
+placePiece = (pieceCurrent) => {
     for (let row = 0; row < matrixMain.sizeX; row++) {
         for (let col = 0; col < matrixMain.sizeY; col++) {
             if (pieceCurrent.positionX === row && pieceCurrent.positionY == col) {
@@ -245,10 +261,7 @@ placePiece = () => {
         }
     }
 }
-const pieceCurrent = new Piece();
-pieceCurrent.shapeCreate();
-placePiece()
-matrixMain.matrixDraw();
+
 document.addEventListener("keydown", function (event) {
 
     switch (event.key) {
@@ -288,18 +301,7 @@ document.addEventListener("keydown", function (event) {
 
 })
 
-playOnClick = () => {
-    console.log("play")
-}
 
 
 
-for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
-    for (let colPiece = 0; colPiece < 4; colPiece++) {
-            console.log(pieceCurrent.area.matrix01)
 
-        if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
-            matrixMain.matrix01[rowPiece][ colPiece] = 3;
-        }
-    }
-}
