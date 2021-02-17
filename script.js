@@ -202,6 +202,7 @@ class Piece {
 }
 let pieceCurrent = new Piece();
 
+
 playOnClick = () => {
     matrixMain.update()
     console.log("play")
@@ -235,7 +236,9 @@ placePiece = () => {
         }
     }
 }
-
+matrixMain.update()
+placePiece()
+matrixMain.matrixDraw();
 window.setInterval(function(){ 
    
 document.addEventListener("keydown", function (event) {
