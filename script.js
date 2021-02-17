@@ -236,6 +236,8 @@ placePiece = () => {
     }
 }
 
+window.setInterval(function(){ 
+   
 document.addEventListener("keydown", function (event) {
 
     switch (event.key) {
@@ -271,7 +273,16 @@ document.addEventListener("keydown", function (event) {
     console.log(event.key)
 }
 )
+pieceCurrent.moveDown();
+matrixMain.update()
+    placePiece()
+    matrixMain.matrixDraw();
+
+}, 1000); 
 
 
+class Engine {
 
+}
 
+ 
