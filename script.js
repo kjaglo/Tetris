@@ -256,6 +256,7 @@ window.setInterval(function () {
                 console.log("Left")
                 pieceCurrent.moveLeft();
                 break;
+                
             case "ArrowRight":
                 console.log("Right")
                 pieceCurrent.moveRight();
