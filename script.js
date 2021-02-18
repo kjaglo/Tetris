@@ -200,8 +200,8 @@ class Piece {
         document.querySelector("#test").innerHTML += "<br />"
     }
 }
-let pieceCurrent = new Piece();
 
+let pieceCurrent = new Piece();
 
 playOnClick = () => {
     matrixMain.update()
@@ -235,10 +235,12 @@ placePiece = () => {
         }
     }
 }
+
 matrixMain.update()
 placePiece()
 matrixMain.matrixDraw();
 let delay = 1000;
+
 window.setInterval(function () {
 
     document.addEventListener("keydown", function (event) {
@@ -256,7 +258,6 @@ window.setInterval(function () {
                 console.log("Left")
                 pieceCurrent.moveLeft();
                 break;
-                
             case "ArrowRight":
                 console.log("Right")
                 pieceCurrent.moveRight();
@@ -275,13 +276,11 @@ window.setInterval(function () {
         placePiece()
         matrixMain.matrixDraw();
         console.log(event.key)
-    }
-    )
+    })
     pieceCurrent.moveDown();
     matrixMain.update()
     placePiece()
     matrixMain.matrixDraw();
-
 }, delay);
 
 
