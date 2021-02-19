@@ -105,7 +105,7 @@ class Piece {
     }
     shapeCreate() {
         this.area.matrixReset()
-        this.shape = Math.round(Math.random() * 10) % 7;
+        //this.shape = Math.round(Math.random() * 10) % 7;
         console.log("random shape:", this.shape)
         let position;
         switch (this.shape) {
@@ -241,13 +241,12 @@ placePiece()
 matrixMain.matrixDraw();
 let delay = 1000;
 
-window.setInterval(function () {
 
     document.addEventListener("keydown", function (event) {
 
         switch (event.key) {
             case "ArrowUp":
-                console.log("Up")
+                console.log(pieceCurrent.positionX, pieceCurrent.positionY)
                 pieceCurrent.moveUp();
                 break;
             case "ArrowDown":
@@ -269,18 +268,22 @@ window.setInterval(function () {
                 console.log("Esc")
                 break;
             case "p":
-                pieceCurrent.shapeCreate()
+                // pieceCurrent.shapeCreate()
                 break;
         }
-        matrixMain.update()
-        placePiece()
-        matrixMain.matrixDraw();
+        
+       
         console.log(event.key)
     })
+
+window.setInterval(function () {
+
     pieceCurrent.moveDown();
+
     matrixMain.update()
     placePiece()
     matrixMain.matrixDraw();
+
 }, delay);
 
 
