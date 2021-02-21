@@ -167,7 +167,10 @@ class Piece {
             this.positionX = this.positionX + 1;
             console.log("move Down")
             console.log(this.area)
+            return true
         }
+        return false;
+
     }
 
     matrixReset() {
@@ -217,6 +220,8 @@ placePiece = () => {
     }
 }
 
+let isPieceActive = 0;
+let isGameOver = 1;
 let pieceCurrent = new Piece();
 matrixMain.update()
 console.log("play")
@@ -235,18 +240,19 @@ for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
 
 playOnClick = () => {
 
-
-    window.setInterval(function () {
-
-        pieceCurrent.moveDown();
-
+    // while (isGameOver === 1) {
+    let int = window.setInterval(function () {
+        isPieceActive = 1;
+        if (!pieceCurrent.moveDown()) {
+            clearInterval(int);
+        }
         matrixMain.update()
         placePiece()
         matrixMain.matrixDraw();
-
+        console.log("KONIEC")
     }, delay);
-
-
+    console.log("KONIEC2")
+    //}
 }
 
 
