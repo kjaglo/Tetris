@@ -105,7 +105,6 @@ class Piece {
     }
     shapeCreate() {
         this.area.matrixReset()
-        //this.shape = Math.round(Math.random() * 10) % 7;
         console.log("random shape:", this.shape)
         let position;
         switch (this.shape) {
@@ -170,7 +169,6 @@ class Piece {
             return true
         }
         return false;
-
     }
 
     matrixReset() {
@@ -239,8 +237,6 @@ for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
 }
 
 playOnClick = () => {
-
-    // while (isGameOver === 1) {
     let int = window.setInterval(function () {
         isPieceActive = 1;
         if (!pieceCurrent.moveDown()) {
@@ -252,18 +248,14 @@ playOnClick = () => {
         console.log("KONIEC")
     }, delay);
     console.log("KONIEC2")
-    //}
 }
-
 
 matrixMain.update()
 placePiece()
 matrixMain.matrixDraw();
 let delay = 1000;
 
-
 document.addEventListener("keydown", function (event) {
-
     switch (event.key) {
         case "ArrowUp":
             console.log(pieceCurrent.positionX, pieceCurrent.positionY)
@@ -291,11 +283,5 @@ document.addEventListener("keydown", function (event) {
             // pieceCurrent.shapeCreate()
             break;
     }
-
-
-
     console.log(event.key)
 })
-
-
-
