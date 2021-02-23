@@ -131,7 +131,7 @@ class Piece {
         for (let i of this.position) {
             this.area.matrix01[i.y][i.x] = 2;
         }
-    
+
     }
 
     moveRight() {
@@ -139,7 +139,19 @@ class Piece {
             this.positionY = this.positionY + 1;
             console.log("move Right")
             console.log(this.area)
+        } else {
+            let col = 0;
+            for (let i of this.position) {
+                if (this.area.matrix01[i.y][9-this.positionY] === 0) {
+                    col++;
+                }
+            }
+            if (col === 4) {
+                this.positionY = this.positionY + 1;
+                console.log("move Right")
+            }
         }
+
     }
 
     moveLeft() {
