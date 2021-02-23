@@ -102,39 +102,36 @@ class Piece {
         this.area.draw01()
         this.shape = Math.round(Math.random() * 10) % 7;
         console.log("random shape:", this.shape)
-    }
-    shapeCreate() {
-        this.area.matrixReset()
-        console.log("random shape:", this.shape)
-        let position;
+        this.position;
         switch (this.shape) {
             case 0:
-                position = [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }, { x: 0, y: 3 }]
+                this.position = [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }, { x: 0, y: 3 }]
                 break;
             case 1:
-                position = [{ x: 0, y: 2 }, { x: 2, y: 3 }, { x: 1, y: 3 }, { x: 0, y: 3 }];
+                this.position = [{ x: 0, y: 2 }, { x: 2, y: 3 }, { x: 1, y: 3 }, { x: 0, y: 3 }];
                 break;
             case 2:
-                position = [{ x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 2 }];
+                this.position = [{ x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 2 }];
                 break;
             case 3:
-                position = [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 1, y: 3 }, { x: 2, y: 3 }];
+                this.position = [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 1, y: 3 }, { x: 2, y: 3 }];
                 break;
             case 4:
-                position = [{ x: 0, y: 3 }, { x: 1, y: 3 }, { x: 1, y: 2 }, { x: 2, y: 2 }];
+                this.position = [{ x: 0, y: 3 }, { x: 1, y: 3 }, { x: 1, y: 2 }, { x: 2, y: 2 }];
                 break;
             case 5:
-                position = [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 2, y: 3 }];
+                this.position = [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 2, y: 3 }];
                 break;
             case 6:
-                position = [{ x: 2, y: 2 }, { x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }];
+                this.position = [{ x: 2, y: 2 }, { x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }];
                 break;
             default:
                 console.log(this.shape, position)
         }
-        for (let i of position) {
+        for (let i of this.position) {
             this.area.matrix01[i.y][i.x] = 2;
         }
+    
     }
 
     moveRight() {
@@ -224,7 +221,6 @@ let pieceCurrent = new Piece();
 matrixMain.update()
 console.log("play")
 pieceCurrent = new Piece();
-pieceCurrent.shapeCreate();
 placePiece()
 matrixMain.matrixDraw();
 for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
