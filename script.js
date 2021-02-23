@@ -100,12 +100,12 @@ class Piece {
         this.positionY = 0;
         this.area = new Matrix(4, 4);
         this.area.draw01()
-        this.shape = Math.round(Math.random() * 10) % 7;
+        this.shape =0//= Math.round(Math.random() * 10) % 7;
         console.log("random shape:", this.shape)
         this.position;
         switch (this.shape) {
             case 0:
-                this.position = [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }, { x: 0, y: 3 }]
+                this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }]
                 break;
             case 1:
                 this.position = [{ x: 0, y: 2 }, { x: 2, y: 3 }, { x: 1, y: 3 }, { x: 0, y: 3 }];
@@ -114,7 +114,7 @@ class Piece {
                 this.position = [{ x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 2 }];
                 break;
             case 3:
-                this.position = [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 1, y: 3 }, { x: 2, y: 3 }];
+                this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 0 }, { x: 2, y: 1 }];
                 break;
             case 4:
                 this.position = [{ x: 0, y: 3 }, { x: 1, y: 3 }, { x: 1, y: 2 }, { x: 2, y: 2 }];
@@ -142,7 +142,7 @@ class Piece {
         } else {
             let col = 0;
             for (let i of this.position) {
-                if (this.area.matrix01[i.y][9-this.positionY] === 0) {
+                if (this.area.matrix01[i.y][9 - this.positionY] === 0) {
                     col++;
                 }
             }
