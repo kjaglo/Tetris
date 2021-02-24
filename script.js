@@ -184,7 +184,6 @@ class Piece {
 
     moveBottom() {
         this.positionX = 16;
-        console.log("move Bottom")
     }
 
     matrixReset() {
@@ -248,7 +247,6 @@ let isPieceActive = 0;
 let isGameOver = 1;
 let pieceCurrent = new Piece();
 matrixMain.update()
-console.log("play")
 pieceCurrent = new Piece();
 placePiece()
 matrixMain.matrixDraw();
@@ -273,11 +271,8 @@ playOnClick = () => {
         matrixMain.update()
         placePiece()
         matrixMain.matrixDraw();
-        console.log("KONIEC")
     }, delay);
-    console.log("KONIEC2")
 }
-
 
 document.addEventListener("keydown", function (event) {
     switch (event.key) {
@@ -286,23 +281,18 @@ document.addEventListener("keydown", function (event) {
             //pieceCurrent.moveUp();
             break;
         case "ArrowDown":
-            console.log("Down")
             //pieceCurrent.moveDown();
             break;
         case "ArrowLeft":
-            console.log("Left")
             pieceCurrent.moveLeft();
             break;
         case "ArrowRight":
-            console.log("Right")
             pieceCurrent.moveRight();
             break;
         case " ":
-            console.log("Space")
             pieceCurrent.moveBottom();
             break;
         case "Escape":
-            console.log("Esc")
             break;
         case "p":
             break;
