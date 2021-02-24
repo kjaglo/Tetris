@@ -100,7 +100,7 @@ class Piece {
         this.positionY = 0;
         this.area = new Matrix(4, 4);
         this.area.draw01()
-        this.shape =6//= Math.round(Math.random() * 10) % 7;
+        this.shape = Math.round(Math.random() * 10) % 7;
         console.log("random shape:", this.shape)
         this.position;
         switch (this.shape) {
@@ -135,7 +135,7 @@ class Piece {
     }
 
     moveRight() {
-        if (this.positionY <= 6) {
+        if (this.positionY < 6) {
             this.positionY = this.positionY + 1;
             console.log("move Right")
             console.log(this.area)
