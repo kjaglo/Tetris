@@ -177,9 +177,14 @@ class Piece {
             this.positionX = this.positionX + 1;
             console.log("move Down")
             console.log(this.area)
-            return true
+            return true;
         }
         return false;
+    }
+
+    moveBottom() {
+        this.positionX = 16;
+        console.log("move Bottom")
     }
 
     matrixReset() {
@@ -220,7 +225,6 @@ class Piece {
         for (let i of positionType) {
             this.area.matrix01[i.y][i.x] = 2;
         }
-
     }
 }
 
@@ -296,6 +300,7 @@ document.addEventListener("keydown", function (event) {
             break;
         case " ":
             console.log("Space")
+            pieceCurrent.moveBottom();
             break;
         case "Escape":
             console.log("Esc")
