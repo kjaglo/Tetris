@@ -261,7 +261,10 @@ for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
     }
 }
 
+let delay = 1000;
+
 playOnClick = () => {
+
     let int = window.setInterval(function () {
         isPieceActive = 1;
         if (!pieceCurrent.moveDown()) {
@@ -275,10 +278,6 @@ playOnClick = () => {
     console.log("KONIEC2")
 }
 
-matrixMain.update()
-placePiece()
-matrixMain.matrixDraw();
-let delay = 1000;
 
 document.addEventListener("keydown", function (event) {
     switch (event.key) {
