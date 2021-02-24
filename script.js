@@ -100,7 +100,7 @@ class Piece {
         this.positionY = 0;
         this.area = new Matrix(4, 4);
         this.area.draw01()
-        this.shape =0//= Math.round(Math.random() * 10) % 7;
+        this.shape =6//= Math.round(Math.random() * 10) % 7;
         console.log("random shape:", this.shape)
         this.position;
         switch (this.shape) {
@@ -108,22 +108,22 @@ class Piece {
                 this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }]
                 break;
             case 1:
-                this.position = [{ x: 0, y: 2 }, { x: 2, y: 3 }, { x: 1, y: 3 }, { x: 0, y: 3 }];
+                this.position = [{ x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 1 }];
                 break;
             case 2:
-                this.position = [{ x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 2 }];
+                this.position = [{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 0 }];
                 break;
             case 3:
                 this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 0 }, { x: 2, y: 1 }];
                 break;
             case 4:
-                this.position = [{ x: 0, y: 3 }, { x: 1, y: 3 }, { x: 1, y: 2 }, { x: 2, y: 2 }];
+                this.position = [{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 0 }, { x: 3, y: 0 }];
                 break;
             case 5:
-                this.position = [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 2, y: 3 }];
+                this.position = [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }];
                 break;
             case 6:
-                this.position = [{ x: 2, y: 2 }, { x: 1, y: 3 }, { x: 2, y: 3 }, { x: 3, y: 3 }];
+                this.position = [{ x: 2, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }];
                 break;
             default:
                 console.log(this.shape, position)
@@ -135,17 +135,19 @@ class Piece {
     }
 
     moveRight() {
-        if (this.positionY !== 6) {
+        if (this.positionY <= 6) {
             this.positionY = this.positionY + 1;
             console.log("move Right")
             console.log(this.area)
         } else {
             let col = 0;
             for (let i of this.position) {
-                if (this.area.matrix01[i.y][9 - this.positionY] === 0) {
+                if (this.area.matrix01[9 - this.positionY][i.x] === 0) {
                     col++;
                 }
             }
+            console.log("collllllllll", col, "pos", this.positionY)
+
             if (col === 4) {
                 this.positionY = this.positionY + 1;
                 console.log("move Right")
