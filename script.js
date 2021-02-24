@@ -211,6 +211,17 @@ class Piece {
         }
         document.querySelector("#test").innerHTML += "<br />"
     }
+
+    rotatePiece() {
+        let keyPressed;
+        keyPressed++;
+        let piecerotation = keyPressed % 4;
+        let positionType = positionTypes[piecerotation];
+        for (let i of positionType) {
+            this.area.matrix01[i.y][i.x] = 2;
+        }
+
+    }
 }
 
 placePiece = () => {
@@ -269,11 +280,11 @@ document.addEventListener("keydown", function (event) {
     switch (event.key) {
         case "ArrowUp":
             console.log(pieceCurrent.positionX, pieceCurrent.positionY)
-            pieceCurrent.moveUp();
+            //pieceCurrent.moveUp();
             break;
         case "ArrowDown":
             console.log("Down")
-            pieceCurrent.moveDown();
+            //pieceCurrent.moveDown();
             break;
         case "ArrowLeft":
             console.log("Left")
@@ -290,7 +301,6 @@ document.addEventListener("keydown", function (event) {
             console.log("Esc")
             break;
         case "p":
-            // pieceCurrent.shapeCreate()
             break;
     }
     console.log(event.key)
