@@ -100,30 +100,43 @@ class Piece {
         this.positionY = 0;
         this.area = new Matrix(4, 4);
         this.area.draw01()
-        this.shape = Math.round(Math.random() * 10) % 7;
+        this.shape = 6//Math.round(Math.random() * 10) % 7;
         console.log("random shape:", this.shape)
         this.position;
         switch (this.shape) {
             case 0:
                 this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }]
+                this.position = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]
                 break;
             case 1:
                 this.position = [{ x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 1 }];
+                this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 2, y: 2 }];
+                this.position = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }];
+                this.position = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 2, y: 1 }];
                 break;
             case 2:
                 this.position = [{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 0 }];
+                this.position = [{ x: 2, y: 0 }, { x: 3, y: 2 }, { x: 3, y: 1 }, { x: 3, y: 0 }];
+                this.position = [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }, { x: 1, y: 1 }];
+                this.position = [{ x: 2, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 0 }];
                 break;
             case 3:
                 this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 0 }, { x: 2, y: 1 }];
                 break;
             case 4:
                 this.position = [{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 0 }, { x: 3, y: 0 }];
+                this.position = [{ x: 3, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 0 }, { x: 3, y: 2 }];
                 break;
             case 5:
                 this.position = [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }];
+                this.position = [{ x: 3, y: 0 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 2, y: 1 }];
+
                 break;
             case 6:
                 this.position = [{ x: 2, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }];
+                this.position = [{ x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 0 }, { x: 2, y: 1 }];
+                this.position = [{ x: 2, y: 1 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }];
+                this.position = [{ x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 0 }, { x: 3, y: 1 }];
                 break;
             default:
                 console.log(this.shape, position)
@@ -281,7 +294,7 @@ document.addEventListener("keydown", function (event) {
             //pieceCurrent.moveUp();
             break;
         case "ArrowDown":
-            //pieceCurrent.moveDown();
+            pieceCurrent.moveDown();
             break;
         case "ArrowLeft":
             pieceCurrent.moveLeft();
