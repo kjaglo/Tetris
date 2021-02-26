@@ -99,8 +99,9 @@ class Piece {
         this.positionX = 0;
         this.positionY = 0;
         this.area = new Matrix(4, 4);
-        this.area.draw01()
-        this.shape = 6//Math.round(Math.random() * 10) % 7;
+        this.area.draw01();
+        this.press0 = 0;
+        this.shape = 0//Math.round(Math.random() * 10) % 7;
         console.log("random shape:", this.shape)
         this.position;
         switch (this.shape) {
@@ -178,11 +179,33 @@ class Piece {
     }
 
     moveUp() {
-        if (this.positionX !== 0) {
-            this.positionX = this.positionX - 1;
-            console.log("move Up")
-            console.log(this.area)
+        // if (this.positionX !== 0) {
+        //     this.positionX = this.positionX - 1;
+        //     console.log("move Up")
+        //     console.log(this.area)
+        // }
+
+        switch (this.shape) {
+            case 0:
+                this.press0++;
+                if (this.press0 % 2 == 1) {
+                    this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }]
+                }
+                else {
+                    this.position = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]
+                }
+                console.log("eeee")
+
+                break;
+
+            default:
+                console.log("default", press0, this.shape, position)
         }
+        this.area.matrixReset()
+        for (let i of this.position) {
+            this.area.matrix01[i.y][i.x] = 2;
+        }
+
     }
 
     moveDown() {
@@ -291,7 +314,7 @@ document.addEventListener("keydown", function (event) {
     switch (event.key) {
         case "ArrowUp":
             console.log(pieceCurrent.positionX, pieceCurrent.positionY)
-            //pieceCurrent.moveUp();
+            pieceCurrent.moveUp();
             break;
         case "ArrowDown":
             pieceCurrent.moveDown();
