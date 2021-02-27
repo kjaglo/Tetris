@@ -100,10 +100,41 @@ class Piece {
         this.positionY = 0;
         this.area = new Matrix(4, 4);
         this.area.draw01();
-        this.press0 = 0;
-        this.shape = 0//Math.round(Math.random() * 10) % 7;
+        this.press = [0, 0, 0, 0, 0, 0, 0];
+        this.shape = 4//Math.round(Math.random() * 10) % 7;
+        this.positions = [];
         console.log("random shape:", this.shape)
         this.position;
+        const positions0 = [[{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }],
+        [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]];
+
+        const positions1 = [[{ x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 1 }],
+        [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 2, y: 2 }],
+        [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }],
+        [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 2, y: 1 }]];
+
+        const positions2 = [[{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 0 }],
+        [{ x: 2, y: 0 }, { x: 3, y: 2 }, { x: 3, y: 1 }, { x: 3, y: 0 }],
+        [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }, { x: 1, y: 1 }],
+        [{ x: 2, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 0 }]];
+
+        const positions3 = [[{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 0 }, { x: 2, y: 1 }]];
+
+        const positions4 = [[{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 0 }, { x: 3, y: 0 }],
+        [{ x: 3, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 0 }, { x: 3, y: 2 }]]
+
+        const positions5 = [[{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }],
+        [{ x: 3, y: 0 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 2, y: 1 }]];
+
+        const positions6 = [[{ x: 2, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }],
+        [{ x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 0 }, { x: 2, y: 1 }],
+        [{ x: 2, y: 1 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }],
+        [{ x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 0 }, { x: 3, y: 1 }]];
+
+
+
+        this.positions.push(positions0, positions1, positions2, positions3, positions4, positions5, positions6)
+        console.log("possss", this.positions[1][3 % 2])
         switch (this.shape) {
             case 0:
                 this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }]
@@ -179,28 +210,10 @@ class Piece {
     }
 
     moveUp() {
-        // if (this.positionX !== 0) {
-        //     this.positionX = this.positionX - 1;
-        //     console.log("move Up")
-        //     console.log(this.area)
-        // }
 
-        switch (this.shape) {
-            case 0:
-                this.press0++;
-                if (this.press0 % 2 == 1) {
-                    this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }]
-                }
-                else {
-                    this.position = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]
-                }
-                console.log("eeee")
+        const pressNumber = this.press[this.shape]++;
+        this.position = this.positions[this.shape][pressNumber % this.positions[this.shape].length];
 
-                break;
-
-            default:
-                console.log("default", press0, this.shape, position)
-        }
         this.area.matrixReset()
         for (let i of this.position) {
             this.area.matrix01[i.y][i.x] = 2;
@@ -288,7 +301,7 @@ placePiece()
 matrixMain.matrixDraw();
 for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
     for (let colPiece = 0; colPiece < 4; colPiece++) {
-        console.log(pieceCurrent.area.matrix01)
+        //console.log(pieceCurrent.area.matrix01)
         if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
             matrixMain.matrix01[rowPiece][colPiece] = 3;
         }
