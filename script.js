@@ -276,7 +276,7 @@ class Piece {
     }
 }
 
-placePiece = () => {
+placePiece = (pieceCurrent) => {
     for (let row = 0; row < matrixMain.sizeX; row++) {
         for (let col = 0; col < matrixMain.sizeY; col++) {
             if (pieceCurrent.positionX === row && pieceCurrent.positionY == col) {
@@ -292,33 +292,33 @@ placePiece = () => {
     }
 }
 
-let isPieceActive = 0;
-let isGameOver = 1;
-let pieceCurrent = new Piece();
-matrixMain.update()
-pieceCurrent = new Piece();
-placePiece()
-matrixMain.matrixDraw();
-for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
-    for (let colPiece = 0; colPiece < 4; colPiece++) {
-        //console.log(pieceCurrent.area.matrix01)
-        if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
-            matrixMain.matrix01[rowPiece][colPiece] = 3;
-        }
-    }
-}
+
 
 let delay = 1000;
-
+let pieceCurrent;
 playOnClick = () => {
-
+    let isPieceActive = 0;
+    let isGameOver = 1;
+    pieceCurrent = new Piece();
+    matrixMain.update()
+    pieceCurrent = new Piece();
+    placePiece(pieceCurrent)
+    matrixMain.matrixDraw();
+    for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
+        for (let colPiece = 0; colPiece < 4; colPiece++) {
+            //console.log(pieceCurrent.area.matrix01)
+            if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
+                matrixMain.matrix01[rowPiece][colPiece] = 3;
+            }
+        }
+    }
     let int = window.setInterval(function () {
         isPieceActive = 1;
         if (!pieceCurrent.moveDown()) {
             clearInterval(int);
         }
         matrixMain.update()
-        placePiece()
+        placePiece(pieceCurrent)
         matrixMain.matrixDraw();
     }, delay);
 }
