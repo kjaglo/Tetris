@@ -29,26 +29,7 @@ class Matrix {
         console.log(this.matrix01);
     }
 
-    sideLeft(col) {
-        if (col == 0) {
-            console.log("left");
-        }
-    }
-
-    sideRight(col) {
-        if (col == 9) {
-            console.log("right");
-        }
-    }
-
-    sideBottom(row) {
-        if (row == 19) {
-            console.log("bottom");
-        }
-    }
-
     matrixReset() {
-
         for (let row = 0; row < this.sizeX; row++) {
             for (let col = 0; col < this.sizeY; col++) {
                 this.matrix01[row][col] = 0;
@@ -81,9 +62,7 @@ class Matrix {
 const matrixMain = new Matrix(20, 10);
 matrixMain.draw();
 matrixMain.draw01();
-matrixMain.sideLeft(0)
-matrixMain.sideRight(0)
-matrixMain.sideBottom(0)
+
 class Type {
     typeCreate(typeNumber) {
         switch (typeNumber) {
@@ -101,10 +80,11 @@ class Piece {
         this.area = new Matrix(4, 4);
         this.area.draw01();
         this.press = [0, 0, 0, 0, 0, 0, 0];
-        this.shape = 4//Math.round(Math.random() * 10) % 7;
+        this.shape = Math.round(Math.random() * 10) % 7;
         this.positions = [];
         console.log("random shape:", this.shape)
         this.position;
+
         const positions0 = [[{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }],
         [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]];
 
@@ -131,48 +111,11 @@ class Piece {
         [{ x: 2, y: 1 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }],
         [{ x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 0 }, { x: 3, y: 1 }]];
 
-
-
         this.positions.push(positions0, positions1, positions2, positions3, positions4, positions5, positions6)
         console.log("possss", this.positions[1][3 % 2])
-        switch (this.shape) {
-            case 0:
-                this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }]
-                this.position = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]
-                break;
-            case 1:
-                this.position = [{ x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 1 }];
-                this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 2, y: 2 }];
-                this.position = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }];
-                this.position = [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 2, y: 1 }];
-                break;
-            case 2:
-                this.position = [{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 0 }];
-                this.position = [{ x: 2, y: 0 }, { x: 3, y: 2 }, { x: 3, y: 1 }, { x: 3, y: 0 }];
-                this.position = [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }, { x: 1, y: 1 }];
-                this.position = [{ x: 2, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 0 }];
-                break;
-            case 3:
-                this.position = [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 0 }, { x: 2, y: 1 }];
-                break;
-            case 4:
-                this.position = [{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 0 }, { x: 3, y: 0 }];
-                this.position = [{ x: 3, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 0 }, { x: 3, y: 2 }];
-                break;
-            case 5:
-                this.position = [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }];
-                this.position = [{ x: 3, y: 0 }, { x: 2, y: 2 }, { x: 3, y: 1 }, { x: 2, y: 1 }];
 
-                break;
-            case 6:
-                this.position = [{ x: 2, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }];
-                this.position = [{ x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 0 }, { x: 2, y: 1 }];
-                this.position = [{ x: 2, y: 1 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }];
-                this.position = [{ x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 0 }, { x: 3, y: 1 }];
-                break;
-            default:
-                console.log(this.shape, position)
-        }
+        this.position = this.positions[this.shape][0];
+
         for (let i of this.position) {
             this.area.matrix01[i.y][i.x] = 2;
         }
@@ -198,7 +141,6 @@ class Piece {
                 console.log("move Right")
             }
         }
-
     }
 
     moveLeft() {
@@ -218,7 +160,6 @@ class Piece {
         for (let i of this.position) {
             this.area.matrix01[i.y][i.x] = 2;
         }
-
     }
 
     moveDown() {
@@ -291,8 +232,6 @@ placePiece = (pieceCurrent) => {
         }
     }
 }
-
-
 
 let delay = 1000;
 let pieceCurrent;
