@@ -238,10 +238,17 @@ let pieceCurrent;
 playOnClick = () => {
     let isPieceActive = 0;
     let isGameOver = 1;
+
     pieceCurrent = new Piece();
+
+
+    if (!pieceCurrent.moveDown()) {
+        pieceCurrent = new Piece();
+    }
     matrixMain.update()
-    pieceCurrent = new Piece();
+    pieceCurrent2 = new Piece();
     placePiece(pieceCurrent)
+    placePiece(pieceCurrent2)
     matrixMain.matrixDraw();
     for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
         for (let colPiece = 0; colPiece < 4; colPiece++) {
@@ -258,6 +265,7 @@ playOnClick = () => {
         }
         matrixMain.update()
         placePiece(pieceCurrent)
+        placePiece(pieceCurrent2)
         matrixMain.matrixDraw();
     }, delay);
 }
