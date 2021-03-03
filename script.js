@@ -236,19 +236,21 @@ placePiece = (pieceCurrent) => {
 let delay = 1000;
 let pieceCurrent;
 playOnClick = () => {
-    let isPieceActive = 0;
+    let isPieceActive = 1;
     let isGameOver = 1;
 
+if(isPieceActive){
     pieceCurrent = new Piece();
 
+}
 
-    if (!pieceCurrent.moveDown()) {
-        pieceCurrent = new Piece();
-    }
+    // if (!pieceCurrent.moveDown()) {
+    //     pieceCurrent = new Piece();
+    // }
     matrixMain.update()
-    pieceCurrent2 = new Piece();
+    //pieceCurrent2 = new Piece();
     placePiece(pieceCurrent)
-    placePiece(pieceCurrent2)
+    //placePiece(pieceCurrent2)
     matrixMain.matrixDraw();
     for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
         for (let colPiece = 0; colPiece < 4; colPiece++) {
@@ -261,11 +263,14 @@ playOnClick = () => {
     let int = window.setInterval(function () {
         isPieceActive = 1;
         if (!pieceCurrent.moveDown()) {
-            clearInterval(int);
+            //clearInterval(int);
+            // isPieceActive = 0;
+            pieceCurrent = new Piece();
+
         }
         matrixMain.update()
         placePiece(pieceCurrent)
-        placePiece(pieceCurrent2)
+        //placePiece(pieceCurrent2)
         matrixMain.matrixDraw();
     }, delay);
 }
