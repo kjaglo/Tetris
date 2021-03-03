@@ -76,13 +76,16 @@ class Type {
 class Piece {
     constructor() {
         this.positionX = 0;
-        this.positionY = 0;
+        this.positionY = 4;
         this.area = new Matrix(4, 4);
         this.area.draw01();
         this.press = [0, 0, 0, 0, 0, 0, 0];
         this.shape = Math.round(Math.random() * 10) % 7;
         this.positions = [];
         console.log("random shape:", this.shape)
+        if (this.shape == 0) {
+            this.positionY = 3;
+        }
         this.position;
 
         const positions0 = [[{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }],
@@ -155,7 +158,6 @@ class Piece {
 
         const pressNumber = this.press[this.shape]++;
         this.position = this.positions[this.shape][pressNumber % this.positions[this.shape].length];
-
         this.area.matrixReset()
         for (let i of this.position) {
             this.area.matrix01[i.y][i.x] = 2;
@@ -237,24 +239,16 @@ let delay = 1000;
 let pieceCurrent;
 playOnClick = () => {
     let isPieceActive = 1;
-    let isGameOver = 1;
+    //let isGameOver = 1;
 
-if(isPieceActive){
-    pieceCurrent = new Piece();
-
-}
-
-    // if (!pieceCurrent.moveDown()) {
-    //     pieceCurrent = new Piece();
-    // }
+    if (isPieceActive) {
+        pieceCurrent = new Piece();
+    }
     matrixMain.update()
-    //pieceCurrent2 = new Piece();
     placePiece(pieceCurrent)
-    //placePiece(pieceCurrent2)
     matrixMain.matrixDraw();
     for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
         for (let colPiece = 0; colPiece < 4; colPiece++) {
-            //console.log(pieceCurrent.area.matrix01)
             if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
                 matrixMain.matrix01[rowPiece][colPiece] = 3;
             }
@@ -263,14 +257,10 @@ if(isPieceActive){
     let int = window.setInterval(function () {
         isPieceActive = 1;
         if (!pieceCurrent.moveDown()) {
-            //clearInterval(int);
-            // isPieceActive = 0;
             pieceCurrent = new Piece();
-
         }
         matrixMain.update()
         placePiece(pieceCurrent)
-        //placePiece(pieceCurrent2)
         matrixMain.matrixDraw();
     }, delay);
 }
