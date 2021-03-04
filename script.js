@@ -32,7 +32,8 @@ class Matrix {
     matrixReset() {
         for (let row = 0; row < this.sizeX; row++) {
             for (let col = 0; col < this.sizeY; col++) {
-                this.matrix01[row][col] = 0;
+                if (this.matrix01[row][col] !== 4)
+                    this.matrix01[row][col] = 0;
             }
         }
     }
@@ -56,6 +57,13 @@ class Matrix {
             document.querySelector("#test").innerHTML += "<br />"
         }
         document.querySelector("#test").innerHTML += "<br />"
+    }
+
+    fix(pieceFixed) {
+        for (let i of pieceFixed) {
+            this.matrix01[i.x][i.y] = 4;
+            console.log("x", i.x)
+        }
     }
 }
 
@@ -122,9 +130,16 @@ class Piece {
         for (let i of this.position) {
             this.area.matrix01[i.y][i.x] = 2;
         }
-
     }
 
+    fix() {
+        const positionFixed = [];
+        for (let i of this.position) {
+            positionFixed.push({ x: i.x + this.positionX, y: i.y + this.positionY })
+            console.log("fix:", i.x + this.positionX, i.y + this.positionY)
+        }
+        return positionFixed;
+    }
     moveRight() {
         if (this.positionY < 6) {
             this.positionY = this.positionY + 1;
@@ -257,11 +272,19 @@ playOnClick = () => {
     let int = window.setInterval(function () {
         isPieceActive = 1;
         if (!pieceCurrent.moveDown()) {
-            pieceCurrent = new Piece();
+            pieceFixed = pieceCurrent.fix();
+            matrixMain.fix(pieceFixed);
+        }
+        else {
+            placePiece(pieceCurrent)
         }
         matrixMain.update()
-        placePiece(pieceCurrent)
         matrixMain.matrixDraw();
+        if (!pieceCurrent.moveDown()) {
+            pieceCurrent = new Piece();
+        }
+
+
     }, delay);
 }
 
