@@ -179,12 +179,19 @@ class Piece {
         }
     }
 
-    moveDown() {
+    moveDown(matrixMain) {
+       // console.log("downn", this.positionX, this.positionY, matrixMain.matrix01[this.positionX + 4][this.positionY])
+
         if (this.positionX !== 16) {
             this.positionX = this.positionX + 1;
             console.log("move Down")
             console.log(this.area)
+
+            if (matrixMain.matrix01[this.positionX + 4][this.positionY] === 4) {
+                console.log("bottom collision", this.positionX, this.positionY)
+            }
             return true;
+
         }
         return false;
     }
@@ -271,14 +278,14 @@ playOnClick = () => {
     }
     let int = window.setInterval(function () {
         isPieceActive = 1;
-        isBottom = pieceCurrent.moveDown();
+        isBottom = pieceCurrent.moveDown(matrixMain);
         if (!isBottom) {
             pieceFixed = pieceCurrent.fix();
             matrixMain.fix(pieceFixed);
         }
-       
-        matrixMain.update() 
-         if(isBottom){
+
+        matrixMain.update()
+        if (isBottom) {
             placePiece(pieceCurrent)
         }
         matrixMain.matrixDraw();
