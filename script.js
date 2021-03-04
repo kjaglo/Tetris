@@ -271,16 +271,18 @@ playOnClick = () => {
     }
     let int = window.setInterval(function () {
         isPieceActive = 1;
-        if (!pieceCurrent.moveDown()) {
+        isBottom = pieceCurrent.moveDown();
+        if (!isBottom) {
             pieceFixed = pieceCurrent.fix();
             matrixMain.fix(pieceFixed);
         }
-        else {
+       
+        matrixMain.update() 
+         if(isBottom){
             placePiece(pieceCurrent)
         }
-        matrixMain.update()
         matrixMain.matrixDraw();
-        if (!pieceCurrent.moveDown()) {
+        if (!isBottom) {
             pieceCurrent = new Piece();
         }
 
