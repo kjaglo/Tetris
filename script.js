@@ -69,7 +69,7 @@ class Piece {
         this.positionY = 4;
         this.area = new Matrix(4, 4);
         this.area.draw01();
-        this.press = [0, 0, 0, 0, 0, 0, 0];
+        this.press = [1, 1, 1, 1, 1, 1, 1];
         this.shape = Math.round(Math.random() * 10) % 7;
         this.positions = [];
         if (this.shape == 0) {
