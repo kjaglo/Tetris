@@ -273,14 +273,11 @@ playOnClick = () => {
         if (!isBottom) {
             if (pieceCurrent.positionX === 0) {
                 window.clearInterval(int);
-                alert("gameover")
             } else {
                 pieceCurrent = new Piece();
             }
         }
     }, delay);
-    //window.clearInterval(int)
-
 }
 
 document.addEventListener("keydown", function (event) {
