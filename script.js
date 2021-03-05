@@ -14,7 +14,6 @@ class Matrix {
             }
             this.matrix01.push(matrixRow);
         }
-        console.log(this.matrix01);
     }
 
     matrixReset() {
@@ -50,7 +49,6 @@ class Matrix {
     fix(pieceFixed) {
         for (let i of pieceFixed) {
             this.matrix01[i.x][i.y] = 4;
-            console.log("x", i.x)
         }
     }
 }
@@ -74,7 +72,6 @@ class Piece {
         this.press = [0, 0, 0, 0, 0, 0, 0];
         this.shape = Math.round(Math.random() * 10) % 7;
         this.positions = [];
-        console.log("random shape:", this.shape)
         if (this.shape == 0) {
             this.positionY = 3;
         }
@@ -107,7 +104,6 @@ class Piece {
         [{ x: 2, y: 1 }, { x: 2, y: 2 }, { x: 2, y: 0 }, { x: 3, y: 1 }]];
 
         this.positions.push(positions0, positions1, positions2, positions3, positions4, positions5, positions6)
-        console.log("possss", this.positions[1][3 % 2])
 
         this.position = this.positions[this.shape][0];
 
@@ -120,7 +116,6 @@ class Piece {
         const positionFixed = [];
         for (let i of this.position) {
             positionFixed.push({ x: i.x + this.positionX, y: i.y + this.positionY })
-            console.log("fix:", i.x + this.positionX, i.y + this.positionY)
         }
         return positionFixed;
     }
@@ -128,8 +123,6 @@ class Piece {
     moveRight() {
         if (this.positionY < 6) {
             this.positionY = this.positionY + 1;
-            console.log("move Right")
-            console.log(this.area)
         } else {
             let col = 0;
             for (let i of this.position) {
@@ -137,11 +130,8 @@ class Piece {
                     col++;
                 }
             }
-            console.log("collllllllll", col, "pos", this.positionY)
-
             if (col === 4) {
                 this.positionY = this.positionY + 1;
-                console.log("move Right")
             }
         }
     }
@@ -149,8 +139,6 @@ class Piece {
     moveLeft() {
         if (this.positionY !== 0) {
             this.positionY = this.positionY - 1;
-            console.log("move Left")
-            console.log(this.area)
         }
     }
 
@@ -170,7 +158,6 @@ class Piece {
             for (let i = 0; i < 4; i++) {
                 if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4) {
                     bottomCollision++;
-                    console.log("bottom collision", this.positionX, this.positionY)
                     if(this.positionX===0) {
                         alert("gameover")
                     }
@@ -292,7 +279,6 @@ playOnClick = () => {
 document.addEventListener("keydown", function (event) {
     switch (event.key) {
         case "ArrowUp":
-            console.log(pieceCurrent.positionX, pieceCurrent.positionY)
             pieceCurrent.moveUp();
             break;
         case "ArrowDown":
@@ -312,5 +298,4 @@ document.addEventListener("keydown", function (event) {
         case "p":
             break;
     }
-    console.log(event.key)
 })
