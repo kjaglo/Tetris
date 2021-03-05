@@ -180,65 +180,63 @@ class Piece {
     }
 
     moveDown(matrixMain) {
-       // console.log("downn", this.positionX, this.positionY, matrixMain.matrix01[this.positionX + 4][this.positionY])
+        // console.log("downn", this.positionX, this.positionY, matrixMain.matrix01[this.positionX + 4][this.positionY])
 
         if (this.positionX !== 16) {
-            this.positionX = this.positionX + 1;
-            console.log("move Down")
-            console.log(this.area)
-
             if (matrixMain.matrix01[this.positionX + 4][this.positionY] === 4) {
-                console.log("bottom collision", this.positionX, this.positionY)
-            }
-            return true;
 
+                console.log("bottom collision", this.positionX, this.positionY)
+                return false;
+            }
+                this.positionX = this.positionX + 1;
+                return true
         }
         return false;
     }
 
-    moveBottom() {
-        this.positionX = 16;
-    }
+moveBottom() {
+    this.positionX = 16;
+}
 
-    matrixReset() {
-        for (let row = 0; row < this.area.sizeX; row++) {
-            for (let col = 0; col < this.area.sizeY; col++) {
-                this.area.matrix01[row][col] = 0;
-            }
+matrixReset() {
+    for (let row = 0; row < this.area.sizeX; row++) {
+        for (let col = 0; col < this.area.sizeY; col++) {
+            this.area.matrix01[row][col] = 0;
         }
     }
+}
 
-    update() {
-        this.area.matrixReset()
-        this.area.matrix01[this.positionY][this.positionX] = 1;
+update() {
+    this.area.matrixReset()
+    this.area.matrix01[this.positionY][this.positionX] = 1;
+}
+
+matrixDraw() {
+    if (document.querySelector("#test")) {
+        document.querySelector("#test").remove();
     }
-
-    matrixDraw() {
-        if (document.querySelector("#test")) {
-            document.querySelector("#test").remove();
-        }
-        const body = document.getElementsByTagName('body')[0];
-        const area = document.createElement('div');
-        area.id = "test";
-        body.appendChild(area);
-        for (let row = 0; row < this.area.sizeX; row++) {
-            for (let col = 0; col < this.area.sizeY; col++) {
-                document.querySelector("#test").innerHTML += this.area.matrix01[row][col];
-            }
-            document.querySelector("#test").innerHTML += "<br />"
+    const body = document.getElementsByTagName('body')[0];
+    const area = document.createElement('div');
+    area.id = "test";
+    body.appendChild(area);
+    for (let row = 0; row < this.area.sizeX; row++) {
+        for (let col = 0; col < this.area.sizeY; col++) {
+            document.querySelector("#test").innerHTML += this.area.matrix01[row][col];
         }
         document.querySelector("#test").innerHTML += "<br />"
     }
+    document.querySelector("#test").innerHTML += "<br />"
+}
 
-    rotatePiece() {
-        let keyPressed;
-        keyPressed++;
-        let piecerotation = keyPressed % 4;
-        let positionType = positionTypes[piecerotation];
-        for (let i of positionType) {
-            this.area.matrix01[i.y][i.x] = 2;
-        }
+rotatePiece() {
+    let keyPressed;
+    keyPressed++;
+    let piecerotation = keyPressed % 4;
+    let positionType = positionTypes[piecerotation];
+    for (let i of positionType) {
+        this.area.matrix01[i.y][i.x] = 2;
     }
+}
 }
 
 placePiece = (pieceCurrent) => {
@@ -304,7 +302,7 @@ document.addEventListener("keydown", function (event) {
             pieceCurrent.moveUp();
             break;
         case "ArrowDown":
-            pieceCurrent.moveDown();
+            pieceCurrent.moveDown(matrixMain);
             break;
         case "ArrowLeft":
             pieceCurrent.moveLeft();
