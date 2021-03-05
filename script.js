@@ -156,10 +156,12 @@ class Piece {
         if (this.positionX !== 16) {
             let bottomCollision = 0;
             for (let i = 0; i < 4; i++) {
-                if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4) {
-                    bottomCollision++;
-                    if (this.positionX === 0) {
-                        alert("gameover")
+                if (matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 3) {
+                    if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4) {
+                        bottomCollision++;
+                        if (this.positionX === 0) {
+                            alert("gameover")
+                        }
                     }
                 }
             }
