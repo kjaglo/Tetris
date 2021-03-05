@@ -2,19 +2,7 @@ class Matrix {
     constructor(sizeX, sizeY) {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        this.matrix = [];
         this.matrix01 = [];
-    }
-
-    draw() {
-        for (let row = 0; row < this.sizeX; row++) {
-            const matrixRow = [];
-            for (let col = 0; col < this.sizeY; col++) {
-                matrixRow.push(true);
-            }
-            this.matrix.push(matrixRow);
-        }
-        console.log(this.matrix);
     }
 
     draw01() {
@@ -66,10 +54,6 @@ class Matrix {
         }
     }
 }
-
-const matrixMain = new Matrix(20, 10);
-matrixMain.draw();
-matrixMain.draw01();
 
 class Type {
     typeCreate(typeNumber) {
@@ -140,6 +124,7 @@ class Piece {
         }
         return positionFixed;
     }
+
     moveRight() {
         if (this.positionY < 6) {
             this.positionY = this.positionY + 1;
@@ -183,9 +168,12 @@ class Piece {
         if (this.positionX !== 16) {
             let bottomCollision = 0;
             for (let i = 0; i < 4; i++) {
-                if (matrixMain.matrix01[this.positionX + 4][this.positionY+i] === 4) {
+                if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4) {
                     bottomCollision++;
                     console.log("bottom collision", this.positionX, this.positionY)
+                    if(this.positionX===0) {
+                        alert("gameover")
+                    }
                 }
             }
             if (bottomCollision > 0) {
@@ -242,7 +230,7 @@ class Piece {
     }
 }
 
-placePiece = (pieceCurrent) => {
+placePiece = (matrixMain, pieceCurrent) => {
     for (let row = 0; row < matrixMain.sizeX; row++) {
         for (let col = 0; col < matrixMain.sizeY; col++) {
             if (pieceCurrent.positionX === row && pieceCurrent.positionY == col) {
@@ -260,15 +248,17 @@ placePiece = (pieceCurrent) => {
 
 let delay = 1000;
 let pieceCurrent;
+let matrixMain;
 playOnClick = () => {
+    matrixMain = new Matrix(20, 10);
+    matrixMain.draw01();
     let isPieceActive = 1;
     //let isGameOver = 1;
-
     if (isPieceActive) {
         pieceCurrent = new Piece();
     }
     matrixMain.update()
-    placePiece(pieceCurrent)
+    placePiece(matrixMain, pieceCurrent)
     matrixMain.matrixDraw();
     for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
         for (let colPiece = 0; colPiece < 4; colPiece++) {
@@ -284,17 +274,18 @@ playOnClick = () => {
             pieceFixed = pieceCurrent.fix();
             matrixMain.fix(pieceFixed);
         }
-
         matrixMain.update()
         if (isBottom) {
-            placePiece(pieceCurrent)
+            placePiece(matrixMain, pieceCurrent)
         }
         matrixMain.matrixDraw();
         if (!isBottom) {
+            if(pieceCurrent.positionX===0) {
+                alert("gameover")
+            }
             pieceCurrent = new Piece();
+            //window.clearInterval();
         }
-
-
     }, delay);
 }
 
