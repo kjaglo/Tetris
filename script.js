@@ -158,7 +158,7 @@ class Piece {
             for (let i = 0; i < 4; i++) {
                 if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4) {
                     bottomCollision++;
-                    if(this.positionX===0) {
+                    if (this.positionX === 0) {
                         alert("gameover")
                     }
                 }
@@ -236,7 +236,11 @@ placePiece = (matrixMain, pieceCurrent) => {
 let delay = 1000;
 let pieceCurrent;
 let matrixMain;
+let int;
 playOnClick = () => {
+    if (int) {
+        window.clearInterval(int)
+    }
     matrixMain = new Matrix(20, 10);
     matrixMain.draw01();
     let isPieceActive = 1;
@@ -254,7 +258,7 @@ playOnClick = () => {
             }
         }
     }
-    let int = window.setInterval(function () {
+    int = window.setInterval(function () {
         isPieceActive = 1;
         isBottom = pieceCurrent.moveDown(matrixMain);
         if (!isBottom) {
@@ -267,13 +271,16 @@ playOnClick = () => {
         }
         matrixMain.matrixDraw();
         if (!isBottom) {
-            if(pieceCurrent.positionX===0) {
+            if (pieceCurrent.positionX === 0) {
+                window.clearInterval(int);
                 alert("gameover")
+            } else {
+                pieceCurrent = new Piece();
             }
-            pieceCurrent = new Piece();
-            //window.clearInterval();
         }
     }, delay);
+    //window.clearInterval(int)
+
 }
 
 document.addEventListener("keydown", function (event) {
