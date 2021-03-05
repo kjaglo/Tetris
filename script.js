@@ -183,7 +183,7 @@ class Piece {
         if (this.positionX !== 16) {
             let bottomCollision = 0;
             for (let i = 0; i < 4; i++) {
-                if (matrixMain.matrix01[this.positionX + 4][this.positionY] === 4) {
+                if (matrixMain.matrix01[this.positionX + 4][this.positionY+i] === 4) {
                     bottomCollision++;
                     console.log("bottom collision", this.positionX, this.positionY)
                 }
