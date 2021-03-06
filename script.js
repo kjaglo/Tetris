@@ -52,18 +52,26 @@ class Matrix {
         }
     }
 
-    deleteRow (){
+    deleteRow() {
         for (let row = 0; row < this.sizeX; row++) {
-            for (let col = 0; col < this.sizeY; col++) {
-                let bricks=0
-                if (this.matrix01[row][col] === 4){
-                    console.log("bricks",bricks++)
+            let bricks = 0;
 
+            for (let col = 0; col < this.sizeY; col++) {
+                if (this.matrix01[row][col] === 4) {
+                    ++bricks;
+                    console.log("bricks", bricks);
+
+                }
+            }
+            if (bricks === 10) {
+                console.log("Row deleted")
+                for (let col = 0; col < this.sizeY; col++) {
+                    this.matrix01[row][col] = 0;
                 }
             }
         }
     }
-    
+
 }
 
 class Type {
@@ -279,6 +287,7 @@ playOnClick = () => {
         if (!isBottom) {
             pieceFixed = pieceCurrent.fix();
             matrixMain.fix(pieceFixed);
+            matrixMain.deleteRow();
         }
         matrixMain.update()
         if (isBottom) {
