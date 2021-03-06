@@ -52,6 +52,14 @@ class Matrix {
         }
     }
 
+    lowerMatrix(fromRow) {
+        for (let row = fromRow; row > 0; row--) {
+            for (let col = 0; col < this.sizeY; col++) {
+                this.matrix01[row][col] = this.matrix01[row-1][col];
+            }
+        }
+    }
+
     deleteRow() {
         for (let row = 0; row < this.sizeX; row++) {
             let bricks = 0;
@@ -64,10 +72,11 @@ class Matrix {
                 }
             }
             if (bricks === 10) {
-                console.log("Row deleted")
+                console.log("Row deleted", row)
                 for (let col = 0; col < this.sizeY; col++) {
                     this.matrix01[row][col] = 0;
                 }
+                this.lowerMatrix(row);
             }
         }
     }
