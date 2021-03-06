@@ -51,6 +51,19 @@ class Matrix {
             this.matrix01[i.x][i.y] = 4;
         }
     }
+
+    deleteRow (){
+        for (let row = 0; row < this.sizeX; row++) {
+            for (let col = 0; col < this.sizeY; col++) {
+                let bricks=0
+                if (this.matrix01[row][col] === 4){
+                    console.log("bricks",bricks++)
+
+                }
+            }
+        }
+    }
+    
 }
 
 class Type {
