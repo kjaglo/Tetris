@@ -55,7 +55,7 @@ class Matrix {
     lowerMatrix(fromRow) {
         for (let row = fromRow; row > 0; row--) {
             for (let col = 0; col < this.sizeY; col++) {
-                this.matrix01[row][col] = this.matrix01[row-1][col];
+                this.matrix01[row][col] = this.matrix01[row - 1][col];
             }
         }
     }
@@ -168,7 +168,22 @@ class Piece {
 
     moveLeft() {
         if (this.positionY !== 0) {
-            this.positionY = this.positionY - 1;
+
+            let leftCollision = 0;
+            for (let i = 0; i < 4; i++) {
+                if (matrixMain.matrix01[this.positionX + i][this.positionY] === 3) {
+                    if (matrixMain.matrix01[this.positionX + i][this.positionY - 1] === 4) {
+                        leftCollision++;
+                    }
+                }
+            }
+            if (leftCollision > 0) {
+                return false;
+            }
+            else {
+                this.positionY = this.positionY - 1;
+                return true;
+            }
         }
     }
 
