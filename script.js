@@ -152,7 +152,24 @@ class Piece {
 
     moveRight() {
         if (this.positionY < 6) {
-            this.positionY = this.positionY + 1;
+            let rightCollision = 0;
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 4; j++) {
+                    if (matrixMain.matrix01[this.positionX + i][this.positionY + j] === 3) {
+                        console.log("true", this.positionX + i, this.positionY + j + 1)
+                        if (matrixMain.matrix01[this.positionX + i][this.positionY + j + 1] === 4) {
+                            rightCollision++;
+                        }
+                    }
+                }
+            }
+            if (rightCollision > 0) {
+                return false;
+            } else {
+                console.log("rightcol", rightCollision, this.positionX, this.positionY + 3)
+                this.positionY = this.positionY + 1;
+                return true;
+            }
         } else {
             let col = 0;
             for (let i of this.position) {
@@ -161,6 +178,8 @@ class Piece {
                 }
             }
             if (col === 4) {
+                console.log("col")
+
                 this.positionY = this.positionY + 1;
             }
         }
