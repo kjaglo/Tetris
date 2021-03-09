@@ -229,8 +229,10 @@ class Piece {
                 if (matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 3) {
                     if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4) {
                         bottomCollision++;
-                        if (this.positionX === 0) {
+                        console.log("posiX",this.positionX)
+                        if (this.positionX === 1) {
                             alert("gameover")
+                            clearInterval(int)
                         }
                     }
                 }
