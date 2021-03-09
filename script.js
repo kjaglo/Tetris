@@ -63,16 +63,12 @@ class Matrix {
     deleteRow() {
         for (let row = 0; row < this.sizeX; row++) {
             let bricks = 0;
-
             for (let col = 0; col < this.sizeY; col++) {
                 if (this.matrix01[row][col] === 4) {
                     ++bricks;
-                    console.log("bricks", bricks);
-
                 }
             }
             if (bricks === 10) {
-                console.log("Row deleted", row)
                 for (let col = 0; col < this.sizeY; col++) {
                     this.matrix01[row][col] = 0;
                 }
@@ -80,7 +76,6 @@ class Matrix {
             }
         }
     }
-
 }
 
 class Type {
@@ -156,7 +151,6 @@ class Piece {
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 4; j++) {
                     if (matrixMain.matrix01[this.positionX + i][this.positionY + j] === 3) {
-                        console.log("true", this.positionX + i, this.positionY + j + 1)
                         if (matrixMain.matrix01[this.positionX + i][this.positionY + j + 1] === 4) {
                             rightCollision++;
                         }
@@ -166,7 +160,6 @@ class Piece {
             if (rightCollision > 0) {
                 return false;
             } else {
-                console.log("rightcol", rightCollision, this.positionX, this.positionY + 3)
                 this.positionY = this.positionY + 1;
                 return true;
             }
@@ -178,9 +171,22 @@ class Piece {
                 }
             }
             if (col === 4) {
-                console.log("col")
-
-                this.positionY = this.positionY + 1;
+                let rightCollision = 0;
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 4; j++) {
+                        if (matrixMain.matrix01[this.positionX + i][this.positionY + j] === 3) {
+                            if (matrixMain.matrix01[this.positionX + i][this.positionY + j + 1] === 4) {
+                                rightCollision++;
+                            }
+                        }
+                    }
+                }
+                if (rightCollision > 0) {
+                    return false;
+                } else {
+                    this.positionY = this.positionY + 1;
+                    return true;
+                }
             }
         }
     }
