@@ -229,7 +229,6 @@ class Piece {
                 if (matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 3) {
                     if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4) {
                         bottomCollision++;
-                        console.log("posiX", this.positionX)
                         if (this.positionX === 1) {
                             alert("gameover")
                             clearInterval(int)
@@ -248,18 +247,14 @@ class Piece {
 
     moveBottom() {
         for (let j = 19; j > 3; j--) {
-        let bottomCollision = 0;
-
+            let bottomCollision = 0;
             for (let i = 0; i < 4; i++) {
                 if (matrixMain.matrix01[j][this.positionY + i] === 4) {
-                   // if (matrixMain.matrix01[j][this.positionY + i] === 4) {
-                        bottomCollision++;
-                    //}
+                    bottomCollision++;
                 }
             }
-            if(bottomCollision===0){
-                this.positionX = j-4;
-                console.log("j",j)
+            if (bottomCollision === 0) {
+                this.positionX = j - 4;
                 return true;
             }
         }
