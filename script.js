@@ -3,6 +3,7 @@ class Matrix {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.matrix01 = [];
+        this.pointsTotal = 0;
     }
 
     draw01() {
@@ -37,6 +38,7 @@ class Matrix {
         const matrix = document.createElement('div');
         matrix.id = "test";
         body.appendChild(matrix);
+        document.querySelector("#test").innerHTML += "<br />"
         for (let row = 0; row < this.sizeX; row++) {
             for (let col = 0; col < this.sizeY; col++) {
                 document.querySelector("#test").innerHTML += this.matrix01[row][col];
@@ -45,6 +47,20 @@ class Matrix {
         }
         document.querySelector("#test").innerHTML += "<br />"
     }
+    
+    pointsDraw() {
+        // if (document.querySelector("#points")) {
+        //     document.querySelector("#points").remove();
+        // }
+        const body = document.getElementsByTagName('body')[0];
+        const matrix = document.createElement('div');
+        matrix.id = "points";
+        body.appendChild(matrix);
+        document.querySelector("#points").innerHTML=this.pointsTotal;
+
+
+    }
+
 
     fix(pieceFixed) {
         for (let i of pieceFixed) {
@@ -73,6 +89,9 @@ class Matrix {
                     this.matrix01[row][col] = 0;
                 }
                 this.lowerMatrix(row);
+                this.pointsTotal+=100;
+                matrixMain.pointsDraw()
+
             }
         }
     }
@@ -326,6 +345,7 @@ playOnClick = () => {
         window.clearInterval(int)
     }
     matrixMain = new Matrix(20, 10);
+    matrixMain.pointsDraw()
     matrixMain.draw01();
     let isPieceActive = 1;
     //let isGameOver = 1;
