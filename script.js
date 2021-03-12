@@ -47,7 +47,7 @@ class Matrix {
         }
         document.querySelector("#test").innerHTML += "<br />"
     }
-    
+
     pointsDraw() {
         // if (document.querySelector("#points")) {
         //     document.querySelector("#points").remove();
@@ -56,7 +56,7 @@ class Matrix {
         const matrix = document.createElement('div');
         matrix.id = "points";
         body.appendChild(matrix);
-        document.querySelector("#points").innerHTML=this.pointsTotal;
+        document.querySelector("#points").innerHTML = this.pointsTotal;
 
 
     }
@@ -89,7 +89,7 @@ class Matrix {
                     this.matrix01[row][col] = 0;
                 }
                 this.lowerMatrix(row);
-                this.pointsTotal+=100;
+                this.pointsTotal += 100;
                 matrixMain.pointsDraw()
 
             }
@@ -408,3 +408,34 @@ document.addEventListener("keydown", function (event) {
             break;
     }
 })
+
+drawMatrix = () => {
+    const container = document.getElementById('container');
+    let matrix = document.getElementById('matrix');
+    if (matrix) {
+        matrix.remove();
+    }
+    matrix = document.createElement('table');
+    matrix.id = "matrix";
+    let tbdy = document.createElement('tbody');
+    for (let i = 0; i < 21; i++) {
+        const tr = document.createElement('tr');
+        const th = document.createElement('th');
+        tr.appendChild(th);
+        for (let j = 0; j < 10; j++) {
+            if (i === 0) {
+                const th = document.createElement('th');
+                tr.appendChild(th);
+            }
+            else {
+                const td = document.createElement('td');
+                // td.id = "id" + (i - 1).toString() + j.toString();
+                tr.appendChild(td);
+            }
+        }
+        tbdy.appendChild(tr);
+    }
+    matrix.appendChild(tbdy);
+    container.appendChild(matrix)
+}
+drawMatrix("player");
