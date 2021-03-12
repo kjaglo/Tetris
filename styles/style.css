@@ -58,3 +58,6 @@ td {
     display: none;
 }
 
+#piece-active{
+    background-color: brown;
+}

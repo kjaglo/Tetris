@@ -365,6 +365,7 @@ playOnClick = () => {
     int = window.setInterval(function () {
         isPieceActive = 1;
         isBottom = pieceCurrent.moveDown(matrixMain);
+        drawMatrix(matrixMain.matrix01);
         if (!isBottom) {
             pieceFixed = pieceCurrent.fix();
             matrixMain.fix(pieceFixed);
@@ -409,7 +410,7 @@ document.addEventListener("keydown", function (event) {
     }
 })
 
-drawMatrix = () => {
+drawMatrix = (matrixMain) => {
     const container = document.getElementById('container');
     let matrix = document.getElementById('matrix');
     if (matrix) {
@@ -418,10 +419,14 @@ drawMatrix = () => {
     matrix = document.createElement('table');
     matrix.id = "matrix";
     let tbdy = document.createElement('tbody');
-    for (let i = 0; i < 21; i++) {
+    for (let i = 0; i < matrixMain.length; i++) {
         const tr = document.createElement('tr');
-        for (let j = 0; j < 10; j++) {
+        for (let j = 0; j < matrixMain[0].length; j++) {
             const td = document.createElement('td');
+            if(matrixMain[i][j]===0){
+                td.id="piece-active";
+            }
+            //td.id="piece-active";
             // td.id = "id" + (i - 1).toString() + j.toString();
             tr.appendChild(td);
         }
@@ -430,5 +435,6 @@ drawMatrix = () => {
     matrix.appendChild(tbdy);
     container.appendChild(matrix)
 }
-
-drawMatrix();
+matrixMain2 = new Matrix(20, 10);
+matrixMain2.draw01();
+drawMatrix(matrixMain2.matrix01);
