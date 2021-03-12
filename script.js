@@ -420,22 +420,15 @@ drawMatrix = () => {
     let tbdy = document.createElement('tbody');
     for (let i = 0; i < 21; i++) {
         const tr = document.createElement('tr');
-        const th = document.createElement('th');
-        tr.appendChild(th);
         for (let j = 0; j < 10; j++) {
-            if (i === 0) {
-                const th = document.createElement('th');
-                tr.appendChild(th);
-            }
-            else {
-                const td = document.createElement('td');
-                // td.id = "id" + (i - 1).toString() + j.toString();
-                tr.appendChild(td);
-            }
+            const td = document.createElement('td');
+            // td.id = "id" + (i - 1).toString() + j.toString();
+            tr.appendChild(td);
         }
         tbdy.appendChild(tr);
     }
     matrix.appendChild(tbdy);
     container.appendChild(matrix)
 }
-drawMatrix("player");
+
+drawMatrix();
