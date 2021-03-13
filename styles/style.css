@@ -61,7 +61,3 @@ td {
 #piece-active{
     background-color: brown;
 }
-
-#piece-placed{
-    background-color: rgb(0, 0, 0);
-}

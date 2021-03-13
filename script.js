@@ -365,7 +365,6 @@ playOnClick = () => {
     int = window.setInterval(function () {
         isPieceActive = 1;
         isBottom = pieceCurrent.moveDown(matrixMain);
-        drawMatrix(matrixMain.matrix01);
         if (!isBottom) {
             pieceFixed = pieceCurrent.fix();
             matrixMain.fix(pieceFixed);
@@ -375,7 +374,7 @@ playOnClick = () => {
         if (isBottom) {
             placePiece(matrixMain, pieceCurrent)
         }
-        matrixMain.matrixDraw();
+        //matrixMain.matrixDraw();
         if (!isBottom) {
             if (pieceCurrent.positionX === 0) {
                 window.clearInterval(int);
@@ -383,6 +382,8 @@ playOnClick = () => {
                 pieceCurrent = new Piece();
             }
         }
+        drawMatrix(matrixMain.matrix01);
+
     }, delay);
 }
 
