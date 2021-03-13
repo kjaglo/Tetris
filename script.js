@@ -352,9 +352,9 @@ playOnClick = () => {
     if (isPieceActive) {
         pieceCurrent = new Piece();
     }
-    matrixMain.update()
+    //matrixMain.update()
     placePiece(matrixMain, pieceCurrent)
-    matrixMain.matrixDraw();
+    //matrixMain.matrixDraw();
     for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
         for (let colPiece = 0; colPiece < 4; colPiece++) {
             if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
@@ -423,8 +423,11 @@ drawMatrix = (matrixMain) => {
         const tr = document.createElement('tr');
         for (let j = 0; j < matrixMain[0].length; j++) {
             const td = document.createElement('td');
-            if(matrixMain[i][j]===0){
+            if(matrixMain[i][j]===3){
                 td.id="piece-active";
+            }
+            if(matrixMain[i][j]===4){
+                td.id="piece-placed";
             }
             //td.id="piece-active";
             // td.id = "id" + (i - 1).toString() + j.toString();
