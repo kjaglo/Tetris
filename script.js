@@ -52,10 +52,7 @@ class Matrix {
         // if (document.querySelector("#points")) {
         //     document.querySelector("#points").remove();
         // }
-        const body = document.getElementsByTagName('body')[0];
-        const matrix = document.createElement('div');
-        matrix.id = "points";
-        body.appendChild(matrix);
+        const div = document.querySelector("#points");
         document.querySelector("#points").innerHTML = this.pointsTotal;
 
 

@@ -14,14 +14,25 @@
 
 #buttons{
     margin: auto;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     width:300px;
     text-align: center;
 }
 
+#points{
+    width: 100px;
+    height: 30px;
+    font-size: large;
+    padding-top: 8px;
+    margin: auto;
+    text-align: center;
+    background-color: rgb(49, 218, 189);
+    margin-bottom: 20px;
+}
+
 #container, #container2{
     /* background-color:rgb(255, 255, 255); */
-    width:360px;
+    width: 360px;
     height: 600px;
     margin: auto;
 }
