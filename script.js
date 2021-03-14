@@ -77,6 +77,7 @@ class Matrix {
     }
 
     deleteRow() {
+        let rows=0;
         for (let row = 0; row < this.sizeX; row++) {
             let bricks = 0;
             for (let col = 0; col < this.sizeY; col++) {
@@ -85,15 +86,17 @@ class Matrix {
                 }
             }
             if (bricks === 10) {
+                rows++;
                 for (let col = 0; col < this.sizeY; col++) {
                     this.matrix01[row][col] = 0;
                 }
                 this.lowerMatrix(row);
-                this.pointsTotal += 100;
-                matrixMain.pointsDraw()
-
+               
             }
         }
+        this.pointsTotal += 100*rows+(rows-1)*rows*50;
+        matrixMain.pointsDraw()
+
     }
 }
 
@@ -368,11 +371,14 @@ playOnClick = () => {
         if (!isBottom) {
             pieceFixed = pieceCurrent.fix();
             matrixMain.fix(pieceFixed);
+            matrixMain.pointsTotal += 10;
+            matrixMain.pointsDraw();
             matrixMain.deleteRow();
         }
         matrixMain.update()
         if (isBottom) {
             placePiece(matrixMain, pieceCurrent)
+
         }
         //matrixMain.matrixDraw();
         if (!isBottom) {
