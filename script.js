@@ -243,10 +243,12 @@ class Piece {
 
     moveDown(matrixMain) {
         if (this.positionX !== 16) {
+            const a=this.moveBottom();
+            
             let bottomCollision = 0;
             for (let i = 0; i < 4; i++) {
                 if (matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 3) {
-                    if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4) {
+                    if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4||matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 4) {
                         bottomCollision++;
                         if (this.positionX === 1) {
                             alert("gameover")
@@ -258,7 +260,12 @@ class Piece {
             if (bottomCollision > 0) {
                 return false;
             }
-            this.positionX = this.positionX + 1;
+            if( this.positionX + 1>a)
+        {
+            this.positionX=a
+        }
+        else{
+            this.positionX = this.positionX + 1;}
             return true
         }
         return false;
@@ -274,7 +281,7 @@ class Piece {
             }
             if (bottomCollision === 0) {
                 this.positionX = j - 4;
-                return true;
+                return this.positionX = j - 4;
             }
         }
     }
@@ -391,12 +398,19 @@ playOnClick = () => {
 }
 
 document.addEventListener("keydown", function (event) {
+    //matrixMain.update()
+
+    //drawMatrix(matrixMain.matrix01);
+
     switch (event.key) {
+        
         case "ArrowUp":
             pieceCurrent.moveUp();
             break;
         case "ArrowDown":
             pieceCurrent.moveDown(matrixMain);
+            matrixMain.update()
+
             break;
         case "ArrowLeft":
             pieceCurrent.moveLeft();
