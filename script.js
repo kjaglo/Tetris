@@ -74,7 +74,7 @@ class Matrix {
     }
 
     deleteRow() {
-        let rows=0;
+        let rows = 0;
         for (let row = 0; row < this.sizeX; row++) {
             let bricks = 0;
             for (let col = 0; col < this.sizeY; col++) {
@@ -88,10 +88,10 @@ class Matrix {
                     this.matrix01[row][col] = 0;
                 }
                 this.lowerMatrix(row);
-               
+
             }
         }
-        this.pointsTotal += 100*rows+(rows-1)*rows*50;
+        this.pointsTotal += 100 * rows + (rows - 1) * rows * 50;
         matrixMain.pointsDraw()
 
     }
@@ -242,14 +242,31 @@ class Piece {
     }
 
     moveDown(matrixMain) {
+        let posMax = 19;
+
         if (this.positionX !== 16) {
-            const a=this.moveBottom();
-            
-            let bottomCollision = 0;
+            // const a = this.moveBottom();
+            // if (this.positionX != 0) {
+            //     for (let j = 19; j > 3; j--) {
+            //         let bottomCollision = 0;
+            //         for (let i = 0; i < 4; i++) {
+            //             if (matrixMain.matrix01[j][this.positionY + i] === 4) {
+            //                 bottomCollision++;
+            //             }
+            //         }
+            //         if (bottomCollision === 0) {
+            //             this.positionX = j - 4;
+            //             posMax = j - 4;
+            //             console.log(posMax)
+            //         }
+            //     }
+
+            // }
+            let downCollision = 0;
             for (let i = 0; i < 4; i++) {
                 if (matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 3) {
-                    if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4||matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 4) {
-                        bottomCollision++;
+                    if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4 || matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 4) {
+                        downCollision++;
                         if (this.positionX === 1) {
                             alert("gameover")
                             clearInterval(int)
@@ -257,16 +274,19 @@ class Piece {
                     }
                 }
             }
-            if (bottomCollision > 0) {
+            if (downCollision > 0) {
                 return false;
             }
-            if( this.positionX + 1>a)
-        {
-            this.positionX=a
-        }
-        else{
-            this.positionX = this.positionX + 1;}
-            return true
+            else {
+               // if (this.positionX + 1 < posMax) {
+                    this.positionX = this.positionX + 1; return true
+                // }
+                // else {
+                //     this.positionX = posMax;
+                //     return true
+
+                // }
+            }
         }
         return false;
     }
@@ -343,7 +363,7 @@ placePiece = (matrixMain, pieceCurrent) => {
     }
 }
 
-let delay = 1000;
+let delay = 100;
 let pieceCurrent;
 let matrixMain;
 let int;
@@ -403,7 +423,7 @@ document.addEventListener("keydown", function (event) {
     //drawMatrix(matrixMain.matrix01);
 
     switch (event.key) {
-        
+
         case "ArrowUp":
             pieceCurrent.moveUp();
             break;
@@ -441,11 +461,11 @@ drawMatrix = (matrixMain) => {
         const tr = document.createElement('tr');
         for (let j = 0; j < matrixMain[0].length; j++) {
             const td = document.createElement('td');
-            if(matrixMain[i][j]===3){
-                td.id="piece-active";
+            if (matrixMain[i][j] === 3) {
+                td.id = "piece-active";
             }
-            if(matrixMain[i][j]===4){
-                td.id="piece-placed";
+            if (matrixMain[i][j] === 4) {
+                td.id = "piece-placed";
             }
             //td.id="piece-active";
             // td.id = "id" + (i - 1).toString() + j.toString();
