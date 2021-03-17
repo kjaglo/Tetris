@@ -245,23 +245,26 @@ class Piece {
         let posMax = 19;
 
         if (this.positionX !== 16) {
-            // const a = this.moveBottom();
-            // if (this.positionX != 0) {
-            //     for (let j = 19; j > 3; j--) {
-            //         let bottomCollision = 0;
-            //         for (let i = 0; i < 4; i++) {
-            //             if (matrixMain.matrix01[j][this.positionY + i] === 4) {
-            //                 bottomCollision++;
-            //             }
-            //         }
-            //         if (bottomCollision === 0) {
-            //             this.positionX = j - 4;
-            //             posMax = j - 4;
-            //             console.log(posMax)
-            //         }
-            //     }
+            let a;
+            let found =0;
 
-            // }
+            for (let j = 19; j > 3; j--) {
+                let bottomCollision = 0;
+                for (let i = 0; i < 4; i++) {
+                    if (matrixMain.matrix01[j][this.positionY + i] === 4) {
+                        bottomCollision++;
+                    }
+                }
+                if (bottomCollision === 0) {
+                    //this.positionX = j - 4;
+                    if(found===0)
+                    {a = j - 4;
+                    console.log("a: ",a)
+                    found=1;
+                    }
+                }
+            }
+            // console.log("a: ",a)
             let downCollision = 0;
             for (let i = 0; i < 4; i++) {
                 if (matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 3) {
@@ -363,7 +366,7 @@ placePiece = (matrixMain, pieceCurrent) => {
     }
 }
 
-let delay = 100;
+let delay = 1000;
 let pieceCurrent;
 let matrixMain;
 let int;
@@ -429,7 +432,7 @@ document.addEventListener("keydown", function (event) {
             break;
         case "ArrowDown":
             pieceCurrent.moveDown(matrixMain);
-            matrixMain.update()
+            //matrixMain.update()
 
             break;
         case "ArrowLeft":
