@@ -114,7 +114,7 @@ class Piece {
         this.area = new Matrix(4, 4);
         this.area.draw01();
         this.press = [1, 1, 1, 1, 1, 1, 1];
-        this.shape = 2// Math.round(Math.random() * 10) % 7;
+        this.shape = Math.round(Math.random() * 10) % 7;
         console.log(this.shape)
         this.positions = [];
         if (this.shape == 0) {
@@ -247,7 +247,7 @@ class Piece {
 
         if (this.positionX !== 16) {
             let a;
-            let found =0;
+            let found = 0;
 
             for (let j = 19; j > 3; j--) {
                 let bottomCollision = 0;
@@ -258,10 +258,10 @@ class Piece {
                 }
                 if (bottomCollision === 0) {
                     //this.positionX = j - 4;
-                    if(found===0)
-                    {a = j - 4;
-                    console.log("a: ",a)
-                    found=1;
+                    if (found === 0) {
+                        a = j - 4;
+                        console.log("a: ", a)
+                        found = 1;
                     }
                 }
             }
@@ -282,8 +282,8 @@ class Piece {
                 return false;
             }
             else {
-               // if (this.positionX + 1 < posMax) {
-                    this.positionX = this.positionX + 1; return true
+                // if (this.positionX + 1 < posMax) {
+                this.positionX = this.positionX + 1; return true
                 // }
                 // else {
                 //     this.positionX = posMax;
@@ -369,6 +369,7 @@ placePiece = (matrixMain, pieceCurrent) => {
 
 let delay = 1000;
 let pieceCurrent;
+let pieceNext;
 let matrixMain;
 let int;
 playOnClick = () => {
@@ -382,6 +383,8 @@ playOnClick = () => {
     //let isGameOver = 1;
     if (isPieceActive) {
         pieceCurrent = new Piece();
+        pieceNext = new Piece();
+        console.log("piece cur", pieceCurrent.shape, "piece next", pieceNext.shape)
     }
     //matrixMain.update()
     placePiece(matrixMain, pieceCurrent)
@@ -394,6 +397,8 @@ playOnClick = () => {
         }
     }
     int = window.setInterval(function () {
+        console.log("piece cur", pieceCurrent.shape, "piece next", pieceNext.shape)
+
         isPieceActive = 1;
         isBottom = pieceCurrent.moveDown(matrixMain);
         if (!isBottom) {
@@ -406,14 +411,14 @@ playOnClick = () => {
         matrixMain.update()
         if (isBottom) {
             placePiece(matrixMain, pieceCurrent)
-
         }
         //matrixMain.matrixDraw();
         if (!isBottom) {
             if (pieceCurrent.positionX === 0) {
                 window.clearInterval(int);
             } else {
-                pieceCurrent = new Piece();
+                pieceCurrent = pieceNext;
+                pieceNext = new Piece();
             }
         }
         drawMatrix(matrixMain.matrix01);
