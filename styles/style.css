@@ -37,6 +37,13 @@
     margin: auto;
 }
 
+#next-piece{
+    width: 138px;
+    height: 139px;
+    background-color: rgb(66, 66, 66);
+    margin: auto;
+    margin-bottom: 20px;
+}
 
 #play-btn{
     background-color:rgb(0, 172, 157);

@@ -385,6 +385,7 @@ playOnClick = () => {
         pieceCurrent = new Piece();
         pieceNext = new Piece();
         console.log("piece cur", pieceCurrent.shape, "piece next", pieceNext.shape)
+        drawPiece(pieceNext.area.matrix01)
     }
     //matrixMain.update()
     placePiece(matrixMain, pieceCurrent)
@@ -422,6 +423,7 @@ playOnClick = () => {
             }
         }
         drawMatrix(matrixMain.matrix01);
+        drawPiece(pieceNext.area.matrix01)
 
     }, delay);
 }
@@ -488,3 +490,26 @@ drawMatrix = (matrixMain) => {
 matrixMain2 = new Matrix(20, 10);
 matrixMain2.draw01();
 drawMatrix(matrixMain2.matrix01);
+drawPiece = (pieceNext) => {
+    const container = document.getElementById('next-piece');
+    let piece = document.getElementById('piece');
+    if (piece) {
+        piece.remove();
+    }
+    piece = document.createElement('table');
+    piece.id = "piece";
+    let tbdy = document.createElement('tbody');
+    for (let i = 0; i < pieceNext.length; i++) {
+        const tr = document.createElement('tr');
+        for (let j = 0; j < pieceNext[0].length; j++) {
+            const td = document.createElement('td');
+            if (pieceNext[i][j] !=0) {
+                td.id = "piece-active";
+            }
+            tr.appendChild(td);
+        }
+        tbdy.appendChild(tr);
+    }
+    piece.appendChild(tbdy);
+    container.appendChild(piece)
+}
