@@ -49,13 +49,8 @@ class Matrix {
     }
 
     pointsDraw() {
-        // if (document.querySelector("#points")) {
-        //     document.querySelector("#points").remove();
-        // }
         const div = document.querySelector("#points");
         document.querySelector("#points").innerHTML = this.pointsTotal;
-
-
     }
 
 
@@ -257,15 +252,12 @@ class Piece {
                     }
                 }
                 if (bottomCollision === 0) {
-                    //this.positionX = j - 4;
                     if (found === 0) {
                         a = j - 4;
-                        console.log("a: ", a)
                         found = 1;
                     }
                 }
             }
-            // console.log("a: ",a)
             let downCollision = 0;
             for (let i = 0; i < 4; i++) {
                 if (matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 3) {
@@ -282,14 +274,7 @@ class Piece {
                 return false;
             }
             else {
-                // if (this.positionX + 1 < posMax) {
                 this.positionX = this.positionX + 1; return true
-                // }
-                // else {
-                //     this.positionX = posMax;
-                //     return true
-
-                // }
             }
         }
         return false;
@@ -380,16 +365,12 @@ playOnClick = () => {
     matrixMain.pointsDraw()
     matrixMain.draw01();
     let isPieceActive = 1;
-    //let isGameOver = 1;
     if (isPieceActive) {
         pieceCurrent = new Piece();
         pieceNext = new Piece();
-        console.log("piece cur", pieceCurrent.shape, "piece next", pieceNext.shape)
         drawPiece(pieceNext.area.matrix01)
     }
-    //matrixMain.update()
     placePiece(matrixMain, pieceCurrent)
-    //matrixMain.matrixDraw();
     for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
         for (let colPiece = 0; colPiece < 4; colPiece++) {
             if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
@@ -398,8 +379,6 @@ playOnClick = () => {
         }
     }
     int = window.setInterval(function () {
-        console.log("piece cur", pieceCurrent.shape, "piece next", pieceNext.shape)
-
         isPieceActive = 1;
         isBottom = pieceCurrent.moveDown(matrixMain);
         if (!isBottom) {
@@ -413,7 +392,6 @@ playOnClick = () => {
         if (isBottom) {
             placePiece(matrixMain, pieceCurrent)
         }
-        //matrixMain.matrixDraw();
         if (!isBottom) {
             if (pieceCurrent.positionX === 0) {
                 window.clearInterval(int);
@@ -429,10 +407,6 @@ playOnClick = () => {
 }
 
 document.addEventListener("keydown", function (event) {
-    //matrixMain.update()
-
-    //drawMatrix(matrixMain.matrix01);
-
     switch (event.key) {
 
         case "ArrowUp":
@@ -440,8 +414,6 @@ document.addEventListener("keydown", function (event) {
             break;
         case "ArrowDown":
             pieceCurrent.moveDown(matrixMain);
-            //matrixMain.update()
-
             break;
         case "ArrowLeft":
             pieceCurrent.moveLeft();
@@ -478,8 +450,6 @@ drawMatrix = (matrixMain) => {
             if (matrixMain[i][j] === 4) {
                 td.id = "piece-placed";
             }
-            //td.id="piece-active";
-            // td.id = "id" + (i - 1).toString() + j.toString();
             tr.appendChild(td);
         }
         tbdy.appendChild(tr);
@@ -487,9 +457,11 @@ drawMatrix = (matrixMain) => {
     matrix.appendChild(tbdy);
     container.appendChild(matrix)
 }
+
 matrixMain2 = new Matrix(20, 10);
 matrixMain2.draw01();
 drawMatrix(matrixMain2.matrix01);
+
 drawPiece = (pieceNext) => {
     const container = document.getElementById('next-piece');
     let piece = document.getElementById('piece');
@@ -503,7 +475,7 @@ drawPiece = (pieceNext) => {
         const tr = document.createElement('tr');
         for (let j = 0; j < pieceNext[0].length; j++) {
             const td = document.createElement('td');
-            if (pieceNext[i][j] !=0) {
+            if (pieceNext[i][j] != 0) {
                 td.id = "piece-active";
             }
             tr.appendChild(td);
