@@ -368,7 +368,7 @@ playOnClick = () => {
     if (isPieceActive) {
         pieceCurrent = new Piece();
         pieceNext = new Piece();
-        drawPiece(pieceNext.area.matrix01)
+        drawPiece(pieceNext.area.matrix01, pieceNext.shape)
     }
     placePiece(matrixMain, pieceCurrent)
     for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
@@ -401,7 +401,7 @@ playOnClick = () => {
             }
         }
         drawMatrix(matrixMain.matrix01);
-        drawPiece(pieceNext.area.matrix01)
+        drawPiece(pieceNext.area.matrix01, pieceNext.shape)
 
     }, delay);
 }
@@ -462,7 +462,7 @@ matrixMain2 = new Matrix(20, 10);
 matrixMain2.draw01();
 drawMatrix(matrixMain2.matrix01);
 
-drawPiece = (pieceNext) => {
+drawPiece = (pieceNext, shape) => {
     const container = document.getElementById('next-piece');
     let piece = document.getElementById('piece');
     if (piece) {
@@ -475,7 +475,10 @@ drawPiece = (pieceNext) => {
         const tr = document.createElement('tr');
         for (let j = 0; j < pieceNext[0].length; j++) {
             const td = document.createElement('td');
-            if (pieceNext[i][j] != 0) {
+            // if(shape===3){
+            //     j++;
+            // }
+            if (pieceNext[j][i] != 0) {
                 td.id = "piece-active";
             }
             tr.appendChild(td);
