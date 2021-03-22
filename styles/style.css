@@ -40,7 +40,7 @@
 #next-piece{
     width: 138px;
     height: 139px;
-    background-color: rgb(66, 66, 66);
+    /* background-color: rgb(66, 66, 66); */
     margin: auto;
     margin-bottom: 20px;
 }
@@ -77,10 +77,10 @@ td {
     display: none;
 }
 
-#piece-active{
+.piece-active{
     background-color: rgb(247, 93, 234);
 }
 
-#piece-placed{
+.piece-placed{
     background-color: rgb(82, 82, 82);
 }

@@ -445,10 +445,10 @@ drawMatrix = (matrixMain) => {
         for (let j = 0; j < matrixMain[0].length; j++) {
             const td = document.createElement('td');
             if (matrixMain[i][j] === 3) {
-                td.id = "piece-active";
+                td.className = "piece-active";
             }
             if (matrixMain[i][j] === 4) {
-                td.id = "piece-placed";
+                td.className = "piece-placed";
             }
             tr.appendChild(td);
         }
@@ -479,7 +479,10 @@ drawPiece = (pieceNext, shape) => {
             //     j++;
             // }
             if (pieceNext[j][i] != 0) {
-                td.id = "piece-active";
+                td.className = "piece-active";
+            } else {
+                td.className = "none";
+
             }
             tr.appendChild(td);
         }
