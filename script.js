@@ -274,7 +274,11 @@ class Piece {
                 return false;
             }
             else {
-                this.positionX = this.positionX + 1; return true
+                //if (this.positionX == 15) {
+                  //  this.positionX = 2; return true
+               // } else {
+                    this.positionX = this.positionX + 1; return true
+               // }
             }
         }
         return false;
@@ -479,7 +483,7 @@ drawPiece = (pieceNext, shape) => {
             //     j++;
             // }
             if (pieceNext[j][i] != 0) {
-                td.className = "piece-active";
+                td.className = "next-piece";
             } else {
                 td.className = "none";
 
