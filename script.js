@@ -1,16 +1,16 @@
 class Matrix {
-    constructor(sizeX, sizeY) {
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
+    constructor(sizeRow, sizeCol) {
+        this.sizeRow = sizeRow;
+        this.sizeCol = sizeCol;
         this.matrix01 = [];
         this.pointsTotal = 0;
     }
 
     draw01() {
         for (let row = 0; row <
-            this.sizeX; row++) {
+            this.sizeRow; row++) {
             const matrixRow = [];
-            for (let col = 0; col < this.sizeY; col++) {
+            for (let col = 0; col < this.sizeCol; col++) {
                 matrixRow.push(0);
             }
             this.matrix01.push(matrixRow);
@@ -18,8 +18,8 @@ class Matrix {
     }
 
     matrixReset() {
-        for (let row = 0; row < this.sizeX; row++) {
-            for (let col = 0; col < this.sizeY; col++) {
+        for (let row = 0; row < this.sizeRow; row++) {
+            for (let col = 0; col < this.sizeCol; col++) {
                 if (this.matrix01[row][col] !== 4)
                     this.matrix01[row][col] = 0;
             }
@@ -39,8 +39,8 @@ class Matrix {
         matrix.id = "test";
         body.appendChild(matrix);
         document.querySelector("#test").innerHTML += "<br />"
-        for (let row = 0; row < this.sizeX; row++) {
-            for (let col = 0; col < this.sizeY; col++) {
+        for (let row = 0; row < this.sizeRow; row++) {
+            for (let col = 0; col < this.sizeCol; col++) {
                 document.querySelector("#test").innerHTML += this.matrix01[row][col];
             }
             document.querySelector("#test").innerHTML += "<br />"
@@ -49,7 +49,7 @@ class Matrix {
     }
 
     pointsDraw() {
-        const div = document.querySelector("#points");
+        //const div = document.querySelector("#points");
         document.querySelector("#points").innerHTML = this.pointsTotal;
     }
 
@@ -62,7 +62,7 @@ class Matrix {
 
     lowerMatrix(fromRow) {
         for (let row = fromRow; row > 0; row--) {
-            for (let col = 0; col < this.sizeY; col++) {
+            for (let col = 0; col < this.sizeCol; col++) {
                 this.matrix01[row][col] = this.matrix01[row - 1][col];
             }
         }
@@ -70,16 +70,16 @@ class Matrix {
 
     deleteRow() {
         let rows = 0;
-        for (let row = 0; row < this.sizeX; row++) {
+        for (let row = 0; row < this.sizeRow; row++) {
             let bricks = 0;
-            for (let col = 0; col < this.sizeY; col++) {
+            for (let col = 0; col < this.sizeCol; col++) {
                 if (this.matrix01[row][col] === 4) {
                     ++bricks;
                 }
             }
             if (bricks === 10) {
                 rows++;
-                for (let col = 0; col < this.sizeY; col++) {
+                for (let col = 0; col < this.sizeCol; col++) {
                     this.matrix01[row][col] = 0;
                 }
                 this.lowerMatrix(row);
@@ -104,8 +104,8 @@ class Type {
 
 class Piece {
     constructor() {
-        this.positionX = 0;
-        this.positionY = 4;
+        this.positionRow = 0;
+        this.positionCol = 4;
         this.area = new Matrix(4, 4);
         this.area.draw01();
         this.press = [1, 1, 1, 1, 1, 1, 1];
@@ -300,8 +300,8 @@ class Piece {
     }
 
     matrixReset() {
-        for (let row = 0; row < this.area.sizeX; row++) {
-            for (let col = 0; col < this.area.sizeY; col++) {
+        for (let row = 0; row < this.area.sizeRow; row++) {
+            for (let col = 0; col < this.area.sizeCol; col++) {
                 this.area.matrix01[row][col] = 0;
             }
         }
@@ -320,8 +320,8 @@ class Piece {
         const area = document.createElement('div');
         area.id = "test";
         body.appendChild(area);
-        for (let row = 0; row < this.area.sizeX; row++) {
-            for (let col = 0; col < this.area.sizeY; col++) {
+        for (let row = 0; row < this.area.sizeRow; row++) {
+            for (let col = 0; col < this.area.sizeCol; col++) {
                 document.querySelector("#test").innerHTML += this.area.matrix01[row][col];
             }
             document.querySelector("#test").innerHTML += "<br />"
@@ -341,8 +341,8 @@ class Piece {
 }
 
 placePiece = (matrixMain, pieceCurrent) => {
-    for (let row = 0; row < matrixMain.sizeX; row++) {
-        for (let col = 0; col < matrixMain.sizeY; col++) {
+    for (let row = 0; row < matrixMain.sizeRow; row++) {
+        for (let col = 0; col < matrixMain.sizeCol; col++) {
             if (pieceCurrent.positionX === row && pieceCurrent.positionY == col) {
                 for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
                     for (let colPiece = 0; colPiece < 4; colPiece++) {
