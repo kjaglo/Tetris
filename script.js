@@ -113,7 +113,7 @@ class Piece {
         console.log(this.shape)
         this.positions = [];
         if (this.shape == 0) {
-            this.positionY = 3;
+            this.positionCol = 3;
         }
         this.position;
 
@@ -155,18 +155,18 @@ class Piece {
     fix() {
         const positionFixed = [];
         for (let i of this.position) {
-            positionFixed.push({ x: i.x + this.positionX, y: i.y + this.positionY })
+            positionFixed.push({ x: i.x + this.positionRow, y: i.y + this.positionCol })
         }
         return positionFixed;
     }
 
     moveRight() {
-        if (this.positionY < 6) {
+        if (this.positionCol < 6) {
             let rightCollision = 0;
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 4; j++) {
-                    if (matrixMain.matrix01[this.positionX + i][this.positionY + j] === 3) {
-                        if (matrixMain.matrix01[this.positionX + i][this.positionY + j + 1] === 4) {
+                    if (matrixMain.matrix01[this.positionRow + i][this.positionCol + j] === 3) {
+                        if (matrixMain.matrix01[this.positionRow + i][this.positionCol + j + 1] === 4) {
                             rightCollision++;
                         }
                     }
@@ -175,13 +175,13 @@ class Piece {
             if (rightCollision > 0) {
                 return false;
             } else {
-                this.positionY = this.positionY + 1;
+                this.positionCol = this.positionCol + 1;
                 return true;
             }
         } else {
             let col = 0;
             for (let i of this.position) {
-                if (this.area.matrix01[9 - this.positionY][i.x] === 0) {
+                if (this.area.matrix01[9 - this.positionCol][i.x] === 0) {
                     col++;
                 }
             }
@@ -189,8 +189,8 @@ class Piece {
                 let rightCollision = 0;
                 for (let i = 0; i < 4; i++) {
                     for (let j = 0; j < 4; j++) {
-                        if (matrixMain.matrix01[this.positionX + i][this.positionY + j] === 3) {
-                            if (matrixMain.matrix01[this.positionX + i][this.positionY + j + 1] === 4) {
+                        if (matrixMain.matrix01[this.positionRow + i][this.positionCol + j] === 3) {
+                            if (matrixMain.matrix01[this.positionRow + i][this.positionCol + j + 1] === 4) {
                                 rightCollision++;
                             }
                         }
@@ -199,7 +199,7 @@ class Piece {
                 if (rightCollision > 0) {
                     return false;
                 } else {
-                    this.positionY = this.positionY + 1;
+                    this.positionCol = this.positionCol + 1;
                     return true;
                 }
             }
@@ -207,12 +207,12 @@ class Piece {
     }
 
     moveLeft() {
-        if (this.positionY !== 0) {
+        if (this.positionCol !== 0) {
 
             let leftCollision = 0;
             for (let i = 0; i < 4; i++) {
-                if (matrixMain.matrix01[this.positionX + i][this.positionY] === 3) {
-                    if (matrixMain.matrix01[this.positionX + i][this.positionY - 1] === 4) {
+                if (matrixMain.matrix01[this.positionRow + i][this.positionCol] === 3) {
+                    if (matrixMain.matrix01[this.positionRow + i][this.positionCol - 1] === 4) {
                         leftCollision++;
                     }
                 }
@@ -221,7 +221,7 @@ class Piece {
                 return false;
             }
             else {
-                this.positionY = this.positionY - 1;
+                this.positionCol = this.positionCol - 1;
                 return true;
             }
         }
@@ -240,14 +240,14 @@ class Piece {
     moveDown(matrixMain) {
         let posMax = 19;
 
-        if (this.positionX !== 16) {
+        if (this.positionRow !== 16) {
             let a;
             let found = 0;
 
             for (let j = 19; j > 3; j--) {
                 let bottomCollision = 0;
                 for (let i = 0; i < 4; i++) {
-                    if (matrixMain.matrix01[j][this.positionY + i] === 4) {
+                    if (matrixMain.matrix01[j][this.positionCol + i] === 4) {
                         bottomCollision++;
                     }
                 }
@@ -260,10 +260,10 @@ class Piece {
             }
             let downCollision = 0;
             for (let i = 0; i < 4; i++) {
-                if (matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 3) {
-                    if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4 || matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 4) {
+                if (matrixMain.matrix01[this.positionRow + 3][this.positionCol + i] === 3) {
+                    if (matrixMain.matrix01[this.positionRow + 4][this.positionCol + i] === 4 || matrixMain.matrix01[this.positionRow + 3][this.positionCol + i] === 4) {
                         downCollision++;
-                        if (this.positionX === 1) {
+                        if (this.positionRow === 1) {
                             alert("gameover")
                             clearInterval(int)
                         }
@@ -274,10 +274,10 @@ class Piece {
                 return false;
             }
             else {
-                //if (this.positionX == 15) {
-                  //  this.positionX = 2; return true
+                //if (this.positionRow == 15) {
+                  //  this.positionRow = 2; return true
                // } else {
-                    this.positionX = this.positionX + 1; return true
+                    this.positionRow = this.positionRow + 1; return true
                // }
             }
         }
@@ -288,13 +288,13 @@ class Piece {
         for (let j = 19; j > 3; j--) {
             let bottomCollision = 0;
             for (let i = 0; i < 4; i++) {
-                if (matrixMain.matrix01[j][this.positionY + i] === 4) {
+                if (matrixMain.matrix01[j][this.positionCol + i] === 4) {
                     bottomCollision++;
                 }
             }
             if (bottomCollision === 0) {
-                this.positionX = j - 4;
-                return this.positionX = j - 4;
+                this.positionRow = j - 4;
+                return this.positionRow = j - 4;
             }
         }
     }
@@ -309,7 +309,7 @@ class Piece {
 
     update() {
         this.area.matrixReset()
-        this.area.matrix01[this.positionY][this.positionX] = 1;
+        this.area.matrix01[this.positionRow][this.positionCol] = 1;
     }
 
     matrixDraw() {
@@ -343,7 +343,7 @@ class Piece {
 placePiece = (matrixMain, pieceCurrent) => {
     for (let row = 0; row < matrixMain.sizeRow; row++) {
         for (let col = 0; col < matrixMain.sizeCol; col++) {
-            if (pieceCurrent.positionX === row && pieceCurrent.positionY == col) {
+            if (pieceCurrent.positionRow === row && pieceCurrent.positionCol == col) {
                 for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
                     for (let colPiece = 0; colPiece < 4; colPiece++) {
                         if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
@@ -397,7 +397,7 @@ playOnClick = () => {
             placePiece(matrixMain, pieceCurrent)
         }
         if (!isBottom) {
-            if (pieceCurrent.positionX === 0) {
+            if (pieceCurrent.positionRow === 0) {
                 window.clearInterval(int);
             } else {
                 pieceCurrent = pieceNext;
