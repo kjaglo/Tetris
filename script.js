@@ -275,10 +275,10 @@ class Piece {
             }
             else {
                 //if (this.positionRow == 15) {
-                  //  this.positionRow = 2; return true
-               // } else {
-                    this.positionRow = this.positionRow + 1; return true
-               // }
+                //  this.positionRow = 2; return true
+                // } else {
+                this.positionRow = this.positionRow + 1; return true
+                // }
             }
         }
         return false;
@@ -361,6 +361,33 @@ let pieceCurrent;
 let pieceNext;
 let matrixMain;
 let int;
+
+function fun() {
+    isPieceActive = 1;
+    isBottom = pieceCurrent.moveDown(matrixMain);
+    if (!isBottom) {
+        pieceFixed = pieceCurrent.fix();
+        matrixMain.fix(pieceFixed);
+        matrixMain.pointsTotal += 10;
+        matrixMain.pointsDraw();
+        matrixMain.deleteRow();
+    }
+    matrixMain.update()
+    if (isBottom) {
+        placePiece(matrixMain, pieceCurrent)
+    }
+    if (!isBottom) {
+        if (pieceCurrent.positionRow === 0) {
+            window.clearInterval(int);
+        } else {
+            pieceCurrent = pieceNext;
+            pieceNext = new Piece();
+        }
+    }
+    drawMatrix(matrixMain.matrix01);
+    drawPiece(pieceNext.area.matrix01, pieceNext.shape)
+
+}
 playOnClick = () => {
     if (int) {
         window.clearInterval(int)
@@ -382,33 +409,9 @@ playOnClick = () => {
             }
         }
     }
-    int = window.setInterval(function () {
-        isPieceActive = 1;
-        isBottom = pieceCurrent.moveDown(matrixMain);
-        if (!isBottom) {
-            pieceFixed = pieceCurrent.fix();
-            matrixMain.fix(pieceFixed);
-            matrixMain.pointsTotal += 10;
-            matrixMain.pointsDraw();
-            matrixMain.deleteRow();
-        }
-        matrixMain.update()
-        if (isBottom) {
-            placePiece(matrixMain, pieceCurrent)
-        }
-        if (!isBottom) {
-            if (pieceCurrent.positionRow === 0) {
-                window.clearInterval(int);
-            } else {
-                pieceCurrent = pieceNext;
-                pieceNext = new Piece();
-            }
-        }
-        drawMatrix(matrixMain.matrix01);
-        drawPiece(pieceNext.area.matrix01, pieceNext.shape)
-
-    }, delay);
+    int = window.setInterval(fun, delay);
 }
+let pClick = 0
 
 document.addEventListener("keydown", function (event) {
     switch (event.key) {
@@ -431,6 +434,14 @@ document.addEventListener("keydown", function (event) {
         case "Escape":
             break;
         case "p":
+            pClick++;
+            if (pClick % 2 == 1) {
+               clearInterval(int)
+            } else{
+                int = window.setInterval(fun, delay);
+
+            }
+
             break;
     }
 })
