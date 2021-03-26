@@ -413,6 +413,16 @@ playOnClick = () => {
 }
 let pClick = 0
 
+pauseButton = () => {
+    pClick++;
+    if (pClick % 2 == 1) {
+        clearInterval(int)
+    } else {
+        int = window.setInterval(fun, delay);
+
+    }
+}
+
 document.addEventListener("keydown", function (event) {
     switch (event.key) {
 
@@ -434,14 +444,7 @@ document.addEventListener("keydown", function (event) {
         case "Escape":
             break;
         case "p":
-            pClick++;
-            if (pClick % 2 == 1) {
-               clearInterval(int)
-            } else{
-                int = window.setInterval(fun, delay);
-
-            }
-
+            pauseButton();
             break;
     }
 })
