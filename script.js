@@ -49,7 +49,6 @@ class Matrix {
     }
 
     pointsDraw() {
-        //const div = document.querySelector("#points");
         document.querySelector("#points").innerHTML = this.pointsTotal;
     }
 
@@ -274,11 +273,7 @@ class Piece {
                 return false;
             }
             else {
-                //if (this.positionRow == 15) {
-                //  this.positionRow = 2; return true
-                // } else {
                 this.positionRow = this.positionRow + 1; return true
-                // }
             }
         }
         return false;
@@ -388,6 +383,7 @@ function fun() {
     drawPiece(pieceNext.area.matrix01, pieceNext.shape)
 
 }
+
 playOnClick = () => {
     if (int) {
         window.clearInterval(int)
@@ -493,14 +489,10 @@ drawPiece = (pieceNext, shape) => {
         const tr = document.createElement('tr');
         for (let j = 0; j < pieceNext[0].length; j++) {
             const td = document.createElement('td');
-            // if(shape===3){
-            //     j++;
-            // }
             if (pieceNext[j][i] != 0) {
                 td.className = "next-piece";
             } else {
                 td.className = "none";
-
             }
             tr.appendChild(td);
         }
