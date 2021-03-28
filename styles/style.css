@@ -1,5 +1,5 @@
 *{
-    background-color: black;
+    /* background-color: black; */
     font-family: Arial, Helvetica, sans-serif;
     color:white;
 
@@ -44,6 +44,7 @@
     margin: auto;
     margin-bottom: 20px;
     padding-left: 65px;
+    
 }
 
 
@@ -52,6 +53,8 @@
     background-color:rgb(0, 172, 157);
     width:100px;
     height: 30px;
+    border: none;
+    border-radius: 5px;
 }
 
 #play-btn:hover{
@@ -68,12 +71,15 @@
 
 tr{
     height: 30px;
+
 }
 
 td {
     background-color: aquamarine;
     height: 30px;
     width: 30px;
+    border-radius: 20%;
+
 }
 
 .none{
