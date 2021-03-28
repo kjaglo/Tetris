@@ -109,7 +109,7 @@ class Piece {
         this.area = new Matrix(4, 4);
         this.area.draw01();
         this.press = [1, 1, 1, 1, 1, 1, 1];
-        this.shape = Math.round(Math.random() * 10) % 7;
+        this.shape = 1//Math.round(Math.random() * 10) % 7;
         console.log(this.shape)
         this.positions = [];
         if (this.shape == 0) {
@@ -145,7 +145,7 @@ class Piece {
 
         this.positions.push(positions0, positions1, positions2, positions3, positions4, positions5, positions6)
 
-        this.position = this.positions[this.shape][0];
+        this.position = this.positions[this.shape][3];
 
         for (let i of this.position) {
             this.area.matrix01[i.y][i.x] = 2;
@@ -382,7 +382,9 @@ function fun() {
     }
     drawMatrix(matrixMain.matrix01);
     drawPiece(pieceNext.area.matrix01, pieceNext.shape)
-
+    pieceCurrent.matrixDraw()
+    //matrixMain.matrixDraw()
+    console.log("s")
 }
 
 playOnClick = () => {
@@ -490,7 +492,7 @@ drawPiece = (pieceNext, shape) => {
         const tr = document.createElement('tr');
         for (let j = 0; j < pieceNext[0].length; j++) {
             const td = document.createElement('td');
-            if (pieceNext[j][i] != 0) {
+            if (pieceNext[i][j] != 0) {
                 td.className = "next-piece";
             } else {
                 td.className = "none";

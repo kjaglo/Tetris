@@ -1,7 +1,7 @@
 *{
     /* background-color: black; */
     font-family: Arial, Helvetica, sans-serif;
-    color:white;
+    /* color:white; */
 
 }
 
@@ -17,6 +17,7 @@
     margin-bottom: 20px;
     width:300px;
     text-align: center;
+
 }
 
 #points{
@@ -28,6 +29,8 @@
     text-align: center;
     background-color: rgb(49, 218, 189);
     margin-bottom: 20px;
+    color:white;
+
 }
 
 #container, #container2{
@@ -55,18 +58,25 @@
     height: 30px;
     border: none;
     border-radius: 5px;
+    color:white;
+
 }
 
 #play-btn:hover{
     background-color:rgb(217, 244, 255);
     width:120px;
     height: 30px;
+    color:white;
+
+    
 }
 
 #play-btn:active{
     background-color:rgb(183, 198, 218);
     width:100px;
     height: 30px;
+    color:white;
+
 }
 
 tr{
