@@ -29,6 +29,7 @@ class Matrix {
     update() {
         this.matrixReset()
     }
+    
 
     matrixDraw() {
         if (document.querySelector("#test")) {
