@@ -145,7 +145,7 @@ class Piece {
 
         this.positions.push(positions0, positions1, positions2, positions3, positions4, positions5, positions6)
 
-        this.position = this.positions[this.shape][3];
+        this.position = this.positions[this.shape][0];
 
         for (let i of this.position) {
             this.area.matrix01[i.y][i.x] = 2;
@@ -240,14 +240,14 @@ class Piece {
     moveDown(matrixMain) {
         let posMax = 19;
 
-        if (this.positionRow !== 16) {
+        if (this.positionCol !== 16) {
             let a;
             let found = 0;
 
             for (let j = 19; j > 3; j--) {
                 let bottomCollision = 0;
                 for (let i = 0; i < 4; i++) {
-                    if (matrixMain.matrix01[j][this.positionCol + i] === 4) {
+                    if (matrixMain.matrix01[j][this.positionRow + i] === 4) {
                         bottomCollision++;
                     }
                 }
@@ -260,10 +260,10 @@ class Piece {
             }
             let downCollision = 0;
             for (let i = 0; i < 4; i++) {
-                if (matrixMain.matrix01[this.positionRow + 3][this.positionCol + i] === 3) {
-                    if (matrixMain.matrix01[this.positionRow + 4][this.positionCol + i] === 4 || matrixMain.matrix01[this.positionRow + 3][this.positionCol + i] === 4) {
+                if (matrixMain.matrix01[this.positionCol + 3][this.positionRow + i] === 3) {
+                    if (matrixMain.matrix01[this.positionCol + 4][this.positionRow + i] === 4 || matrixMain.matrix01[this.positionCol + 3][this.positionRow + i] === 4) {
                         downCollision++;
-                        if (this.positionRow === 1) {
+                        if (this.positionCol === 1) {
                             alert("gameover")
                             clearInterval(int)
                         }
@@ -274,7 +274,7 @@ class Piece {
                 return false;
             }
             else {
-                this.positionRow = this.positionRow + 1; return true
+                this.positionCol = this.positionCol + 1; return true
             }
         }
         return false;
@@ -343,7 +343,7 @@ placePiece = (matrixMain, pieceCurrent) => {
                 for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
                     for (let colPiece = 0; colPiece < 4; colPiece++) {
                         if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
-                            matrixMain.matrix01[row + rowPiece][col + colPiece] = 3;
+                            matrixMain.matrix01[col + colPiece][row + rowPiece] = 3;
                         }
                     }
                 }
