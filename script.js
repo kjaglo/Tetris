@@ -104,26 +104,28 @@ class Type {
 
 class Piece {
     constructor() {
-        this.positionRow = 0;
-        this.positionCol = 4;
+        this.positionRow = 3;
+        this.positionCol = 0;
         this.area = new Matrix(4, 4);
         this.area.draw01();
         this.press = [1, 1, 1, 1, 1, 1, 1];
-        this.shape = 1//Math.round(Math.random() * 10) % 7;
+        this.shape = 0//Math.round(Math.random() * 10) % 7;
         console.log(this.shape)
         this.positions = [];
         if (this.shape == 0) {
-            this.positionCol = 3;
+            this.positionRow = 1;
         }
         this.position;
 
         const positions0 = [[{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }],
         [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]];
 
-        const positions1 = [[{ x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 1 }],
+        const positions1 = [
         [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 2, y: 2 }],
-        [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }],
-        [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 2, y: 1 }]];
+        [{ x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 1 }],
+        [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 2, y: 1 }],
+        [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }]
+        ];
 
         const positions2 = [[{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 0 }],
         [{ x: 2, y: 0 }, { x: 3, y: 2 }, { x: 3, y: 1 }, { x: 3, y: 0 }],
