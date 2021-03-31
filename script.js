@@ -109,7 +109,7 @@ class Piece {
         this.area = new Matrix(4, 4);
         this.area.draw01();
         this.press = [1, 1, 1, 1, 1, 1, 1];
-        this.shape = 0//Math.round(Math.random() * 10) % 7;
+        this.shape = 6//Math.round(Math.random() * 10) % 7;
         console.log(this.shape)
         this.positions = [];
         if (this.shape == 0) {
@@ -383,8 +383,8 @@ function fun() {
         }
     }
     drawMatrix(matrixMain.matrix01);
-    drawPiece(pieceNext.area.matrix01, pieceNext.shape)
-    pieceCurrent.matrixDraw()
+    drawPiece(pieceNext)
+    pieceNext.matrixDraw()
     //matrixMain.matrixDraw()
     console.log("s")
 }
@@ -400,7 +400,7 @@ playOnClick = () => {
     if (isPieceActive) {
         pieceCurrent = new Piece();
         pieceNext = new Piece();
-        drawPiece(pieceNext.area.matrix01, pieceNext.shape)
+        drawPiece(pieceNext)
     }
     placePiece(matrixMain, pieceCurrent)
     for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
@@ -481,7 +481,10 @@ matrixMain2 = new Matrix(20, 10);
 matrixMain2.draw01();
 drawMatrix(matrixMain2.matrix01);
 
-drawPiece = (pieceNext, shape) => {
+drawPiece = (pieceNext) => {
+    console.log(pieceNext.area.matrix01)
+    pieceNext.matrixDraw()
+
     const container = document.getElementById('next-piece');
     let piece = document.getElementById('piece');
     if (piece) {
@@ -490,19 +493,23 @@ drawPiece = (pieceNext, shape) => {
     piece = document.createElement('table');
     piece.id = "piece";
     let tbdy = document.createElement('tbody');
-    for (let i = 0; i < pieceNext.length; i++) {
+
+    for (let row = 0; row < pieceNext.area.sizeRow; row++) {
         const tr = document.createElement('tr');
-        for (let j = 0; j < pieceNext[0].length; j++) {
+
+        for (let col = 0; col < pieceNext.area.sizeCol; col++) {
             const td = document.createElement('td');
-            if (pieceNext[i][j] != 0) {
+            if (pieceNext.area.matrix01[row][col] ==2) {
                 td.className = "next-piece";
             } else {
-                td.className = "none";
+                td.className = "piece-background";
             }
             tr.appendChild(td);
         }
         tbdy.appendChild(tr);
-    }
+        }
+    
+  
     piece.appendChild(tbdy);
     container.appendChild(piece)
 }

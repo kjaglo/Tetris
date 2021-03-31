@@ -46,7 +46,7 @@
     /* background-color: rgb(66, 66, 66); */
     margin: auto;
     margin-bottom: 20px;
-    padding-left: 65px;
+    
     
 }
 
@@ -107,4 +107,8 @@ td {
 .next-piece{
     background-color: rgb(255, 0, 140);
 
+}
+
+.piece-background{
+    background-color: rgba(82, 82, 82,90);
 }
