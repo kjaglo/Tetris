@@ -29,7 +29,7 @@ class Matrix {
     update() {
         this.matrixReset()
     }
-    
+
 
     matrixDraw() {
         if (document.querySelector("#test")) {
@@ -109,7 +109,7 @@ class Piece {
         this.area = new Matrix(4, 4);
         this.area.draw01();
         this.press = [1, 1, 1, 1, 1, 1, 1];
-        this.shape = 1//Math.round(Math.random() * 10) % 7;
+        this.shape = Math.round(Math.random() * 10) % 7;
         console.log(this.shape)
         this.positions = [];
         if (this.shape == 0) {
@@ -121,10 +121,10 @@ class Piece {
         [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]];
 
         const positions1 = [
-        [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 2, y: 2 }],
-        [{ x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 1 }],
-        [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 2, y: 1 }],
-        [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }]
+            [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 2, y: 2 }],
+            [{ x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 1 }],
+            [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 2, y: 1 }],
+            [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }]
         ];
 
         const positions2 = [[{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 0 }],
@@ -241,8 +241,11 @@ class Piece {
 
     moveDown(matrixMain) {
         let posMax = 19;
-
+        
         if (this.positionCol !== 16) {
+            console.log("down")
+            console.log("positionCol", this.positionCol)
+
             let a;
             let found = 0;
 
@@ -385,8 +388,7 @@ function fun() {
     drawMatrix(matrixMain.matrix01);
     drawPiece(pieceNext)
     pieceNext.matrixDraw()
-    //matrixMain.matrixDraw()
-    console.log("s")
+    matrixMain.matrixDraw()
 }
 
 playOnClick = () => {
@@ -482,7 +484,6 @@ matrixMain2.draw01();
 drawMatrix(matrixMain2.matrix01);
 
 drawPiece = (pieceNext) => {
-    console.log(pieceNext.area.matrix01)
     pieceNext.matrixDraw()
 
     const container = document.getElementById('next-piece');
@@ -499,7 +500,7 @@ drawPiece = (pieceNext) => {
 
         for (let col = 0; col < pieceNext.area.sizeCol; col++) {
             const td = document.createElement('td');
-            if (pieceNext.area.matrix01[row][col] ==2) {
+            if (pieceNext.area.matrix01[row][col] == 2) {
                 td.className = "next-piece";
             } else {
                 td.className = "piece-background";
@@ -507,9 +508,8 @@ drawPiece = (pieceNext) => {
             tr.appendChild(td);
         }
         tbdy.appendChild(tr);
-        }
-    
-  
+    }
+
     piece.appendChild(tbdy);
     container.appendChild(piece)
 }
