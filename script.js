@@ -241,7 +241,7 @@ class Piece {
 
     moveDown(matrixMain) {
         let posMax = 19;
-        
+
         if (this.positionCol !== 16) {
             console.log("down")
             console.log("positionCol", this.positionCol)
@@ -254,6 +254,7 @@ class Piece {
                 for (let i = 0; i < 4; i++) {
                     if (matrixMain.matrix01[j][this.positionRow + i] === 4) {
                         bottomCollision++;
+                        //console.log("col")
                     }
                 }
                 if (bottomCollision === 0) {
@@ -342,13 +343,16 @@ class Piece {
 }
 
 placePiece = (matrixMain, pieceCurrent) => {
-    for (let row = 0; row < matrixMain.sizeRow; row++) {
-        for (let col = 0; col < matrixMain.sizeCol; col++) {
+    for (let row = 0; row < matrixMain.sizeCol; row++) {
+        for (let col = 0; col < matrixMain.sizeRow; col++) {
             if (pieceCurrent.positionRow === row && pieceCurrent.positionCol == col) {
+                console.log("tuuuu", pieceCurrent.positionRow, row)
+
                 for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
                     for (let colPiece = 0; colPiece < 4; colPiece++) {
                         if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
                             matrixMain.matrix01[col + colPiece][row + rowPiece] = 3;
+
                         }
                     }
                 }
@@ -376,6 +380,7 @@ function fun() {
     matrixMain.update()
     if (isBottom) {
         placePiece(matrixMain, pieceCurrent)
+        //console.log("place")
     }
     if (!isBottom) {
         if (pieceCurrent.positionRow === 0) {
