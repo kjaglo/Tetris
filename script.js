@@ -344,14 +344,17 @@ class Piece {
 
 placePiece = (matrixMain, pieceCurrent) => {
     for (let row = 0; row < matrixMain.sizeCol; row++) {
-        for (let col = 0; col < matrixMain.sizeRow; col++) {
+        for (let col = 0; col < matrixMain.sizeRow+1; col++) {
             if (pieceCurrent.positionRow === row && pieceCurrent.positionCol == col) {
                 console.log("tuuuu", pieceCurrent.positionRow, row)
 
                 for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
                     for (let colPiece = 0; colPiece < 4; colPiece++) {
                         if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
-                            matrixMain.matrix01[col + colPiece][row + rowPiece] = 3;
+                            
+                            const r=row + rowPiece;
+                            const c=col + colPiece
+                            matrixMain.matrix01[c][r] = 3;
 
                         }
                     }
