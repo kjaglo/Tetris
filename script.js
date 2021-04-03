@@ -1,16 +1,16 @@
 class Matrix {
-    constructor(sizeRow, sizeCol) {
-        this.sizeRow = sizeRow;
-        this.sizeCol = sizeCol;
+    constructor(sizeX, sizeY) {
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
         this.matrix01 = [];
         this.pointsTotal = 0;
     }
 
     draw01() {
         for (let row = 0; row <
-            this.sizeRow; row++) {
+            this.sizeX; row++) {
             const matrixRow = [];
-            for (let col = 0; col < this.sizeCol; col++) {
+            for (let col = 0; col < this.sizeY; col++) {
                 matrixRow.push(0);
             }
             this.matrix01.push(matrixRow);
@@ -18,8 +18,8 @@ class Matrix {
     }
 
     matrixReset() {
-        for (let row = 0; row < this.sizeRow; row++) {
-            for (let col = 0; col < this.sizeCol; col++) {
+        for (let row = 0; row < this.sizeX; row++) {
+            for (let col = 0; col < this.sizeY; col++) {
                 if (this.matrix01[row][col] !== 4)
                     this.matrix01[row][col] = 0;
             }
@@ -30,7 +30,6 @@ class Matrix {
         this.matrixReset()
     }
 
-
     matrixDraw() {
         if (document.querySelector("#test")) {
             document.querySelector("#test").remove();
@@ -40,8 +39,8 @@ class Matrix {
         matrix.id = "test";
         body.appendChild(matrix);
         document.querySelector("#test").innerHTML += "<br />"
-        for (let row = 0; row < this.sizeRow; row++) {
-            for (let col = 0; col < this.sizeCol; col++) {
+        for (let row = 0; row < this.sizeX; row++) {
+            for (let col = 0; col < this.sizeY; col++) {
                 document.querySelector("#test").innerHTML += this.matrix01[row][col];
             }
             document.querySelector("#test").innerHTML += "<br />"
@@ -50,6 +49,7 @@ class Matrix {
     }
 
     pointsDraw() {
+        const div = document.querySelector("#points");
         document.querySelector("#points").innerHTML = this.pointsTotal;
     }
 
@@ -62,7 +62,7 @@ class Matrix {
 
     lowerMatrix(fromRow) {
         for (let row = fromRow; row > 0; row--) {
-            for (let col = 0; col < this.sizeCol; col++) {
+            for (let col = 0; col < this.sizeY; col++) {
                 this.matrix01[row][col] = this.matrix01[row - 1][col];
             }
         }
@@ -70,16 +70,16 @@ class Matrix {
 
     deleteRow() {
         let rows = 0;
-        for (let row = 0; row < this.sizeRow; row++) {
+        for (let row = 0; row < this.sizeX; row++) {
             let bricks = 0;
-            for (let col = 0; col < this.sizeCol; col++) {
+            for (let col = 0; col < this.sizeY; col++) {
                 if (this.matrix01[row][col] === 4) {
                     ++bricks;
                 }
             }
             if (bricks === 10) {
                 rows++;
-                for (let col = 0; col < this.sizeCol; col++) {
+                for (let col = 0; col < this.sizeY; col++) {
                     this.matrix01[row][col] = 0;
                 }
                 this.lowerMatrix(row);
@@ -104,8 +104,8 @@ class Type {
 
 class Piece {
     constructor() {
-        this.positionRow = 3;
-        this.positionCol = 0;
+        this.positionX = 0;
+        this.positionY = 4;
         this.area = new Matrix(4, 4);
         this.area.draw01();
         this.press = [1, 1, 1, 1, 1, 1, 1];
@@ -113,19 +113,17 @@ class Piece {
         console.log(this.shape)
         this.positions = [];
         if (this.shape == 0) {
-            this.positionRow = 1;
+            this.positionY = 3;
         }
         this.position;
 
-        const positions0 = [[{ x: 1, y: 0 }, { x: 1, y: 1 }, { x: 1, y: 2 }, { x: 1, y: 3 }],
+        const positions0 = [[{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 3, y: 3 }],
         [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }]];
 
-        const positions1 = [
-            [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 2, y: 2 }],
-            [{ x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 1 }],
-            [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 2, y: 1 }],
-            [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }]
-        ];
+        const positions1 = [[{ x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 1 }],
+        [{ x: 3, y: 0 }, { x: 3, y: 1 }, { x: 3, y: 2 }, { x: 2, y: 2 }],
+        [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }],
+        [{ x: 3, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 2, y: 1 }]];
 
         const positions2 = [[{ x: 1, y: 1 }, { x: 2, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 0 }],
         [{ x: 2, y: 0 }, { x: 3, y: 2 }, { x: 3, y: 1 }, { x: 3, y: 0 }],
@@ -157,18 +155,18 @@ class Piece {
     fix() {
         const positionFixed = [];
         for (let i of this.position) {
-            positionFixed.push({ x: i.x + this.positionRow, y: i.y + this.positionCol })
+            positionFixed.push({ x: i.x + this.positionX, y: i.y + this.positionY })
         }
         return positionFixed;
     }
 
     moveRight() {
-        if (this.positionCol < 6) {
+        if (this.positionY < 6) {
             let rightCollision = 0;
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 4; j++) {
-                    if (matrixMain.matrix01[this.positionRow + i][this.positionCol + j] === 3) {
-                        if (matrixMain.matrix01[this.positionRow + i][this.positionCol + j + 1] === 4) {
+                    if (matrixMain.matrix01[this.positionX + i][this.positionY + j] === 3) {
+                        if (matrixMain.matrix01[this.positionX + i][this.positionY + j + 1] === 4) {
                             rightCollision++;
                         }
                     }
@@ -177,13 +175,13 @@ class Piece {
             if (rightCollision > 0) {
                 return false;
             } else {
-                this.positionCol = this.positionCol + 1;
+                this.positionY = this.positionY + 1;
                 return true;
             }
         } else {
             let col = 0;
             for (let i of this.position) {
-                if (this.area.matrix01[9 - this.positionCol][i.x] === 0) {
+                if (this.area.matrix01[9 - this.positionY][i.x] === 0) {
                     col++;
                 }
             }
@@ -191,8 +189,8 @@ class Piece {
                 let rightCollision = 0;
                 for (let i = 0; i < 4; i++) {
                     for (let j = 0; j < 4; j++) {
-                        if (matrixMain.matrix01[this.positionRow + i][this.positionCol + j] === 3) {
-                            if (matrixMain.matrix01[this.positionRow + i][this.positionCol + j + 1] === 4) {
+                        if (matrixMain.matrix01[this.positionX + i][this.positionY + j] === 3) {
+                            if (matrixMain.matrix01[this.positionX + i][this.positionY + j + 1] === 4) {
                                 rightCollision++;
                             }
                         }
@@ -201,7 +199,7 @@ class Piece {
                 if (rightCollision > 0) {
                     return false;
                 } else {
-                    this.positionCol = this.positionCol + 1;
+                    this.positionY = this.positionY + 1;
                     return true;
                 }
             }
@@ -209,12 +207,12 @@ class Piece {
     }
 
     moveLeft() {
-        if (this.positionCol !== 0) {
+        if (this.positionY !== 0) {
 
             let leftCollision = 0;
             for (let i = 0; i < 4; i++) {
-                if (matrixMain.matrix01[this.positionRow + i][this.positionCol] === 3) {
-                    if (matrixMain.matrix01[this.positionRow + i][this.positionCol - 1] === 4) {
+                if (matrixMain.matrix01[this.positionX + i][this.positionY] === 3) {
+                    if (matrixMain.matrix01[this.positionX + i][this.positionY - 1] === 4) {
                         leftCollision++;
                     }
                 }
@@ -223,7 +221,7 @@ class Piece {
                 return false;
             }
             else {
-                this.positionCol = this.positionCol - 1;
+                this.positionY = this.positionY - 1;
                 return true;
             }
         }
@@ -242,19 +240,15 @@ class Piece {
     moveDown(matrixMain) {
         let posMax = 19;
 
-        if (this.positionCol !== 16) {
-            console.log("down")
-            console.log("positionCol", this.positionCol)
-
+        if (this.positionX !== 16) {
             let a;
             let found = 0;
 
             for (let j = 19; j > 3; j--) {
                 let bottomCollision = 0;
                 for (let i = 0; i < 4; i++) {
-                    if (matrixMain.matrix01[j][this.positionRow + i] === 4) {
+                    if (matrixMain.matrix01[j][this.positionY + i] === 4) {
                         bottomCollision++;
-                        //console.log("col")
                     }
                 }
                 if (bottomCollision === 0) {
@@ -266,10 +260,10 @@ class Piece {
             }
             let downCollision = 0;
             for (let i = 0; i < 4; i++) {
-                if (matrixMain.matrix01[this.positionCol + 3][this.positionRow + i] === 3) {
-                    if (matrixMain.matrix01[this.positionCol + 4][this.positionRow + i] === 4 || matrixMain.matrix01[this.positionCol + 3][this.positionRow + i] === 4) {
+                if (matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 3) {
+                    if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4 || matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 4) {
                         downCollision++;
-                        if (this.positionCol === 1) {
+                        if (this.positionX === 1) {
                             alert("gameover")
                             clearInterval(int)
                         }
@@ -280,7 +274,7 @@ class Piece {
                 return false;
             }
             else {
-                this.positionCol = this.positionCol + 1; return true
+                this.positionX = this.positionX + 1; return true
             }
         }
         return false;
@@ -290,20 +284,20 @@ class Piece {
         for (let j = 19; j > 3; j--) {
             let bottomCollision = 0;
             for (let i = 0; i < 4; i++) {
-                if (matrixMain.matrix01[j][this.positionCol + i] === 4) {
+                if (matrixMain.matrix01[j][this.positionY + i] === 4) {
                     bottomCollision++;
                 }
             }
             if (bottomCollision === 0) {
-                this.positionRow = j - 4;
-                return this.positionRow = j - 4;
+                this.positionX = j - 4;
+                return this.positionX = j - 4;
             }
         }
     }
 
     matrixReset() {
-        for (let row = 0; row < this.area.sizeRow; row++) {
-            for (let col = 0; col < this.area.sizeCol; col++) {
+        for (let row = 0; row < this.area.sizeX; row++) {
+            for (let col = 0; col < this.area.sizeY; col++) {
                 this.area.matrix01[row][col] = 0;
             }
         }
@@ -311,7 +305,7 @@ class Piece {
 
     update() {
         this.area.matrixReset()
-        this.area.matrix01[this.positionRow][this.positionCol] = 1;
+        this.area.matrix01[this.positionY][this.positionX] = 1;
     }
 
     matrixDraw() {
@@ -322,8 +316,8 @@ class Piece {
         const area = document.createElement('div');
         area.id = "test";
         body.appendChild(area);
-        for (let row = 0; row < this.area.sizeRow; row++) {
-            for (let col = 0; col < this.area.sizeCol; col++) {
+        for (let row = 0; row < this.area.sizeX; row++) {
+            for (let col = 0; col < this.area.sizeY; col++) {
                 document.querySelector("#test").innerHTML += this.area.matrix01[row][col];
             }
             document.querySelector("#test").innerHTML += "<br />"
@@ -343,19 +337,13 @@ class Piece {
 }
 
 placePiece = (matrixMain, pieceCurrent) => {
-    for (let row = 0; row < matrixMain.sizeCol; row++) {
-        for (let col = 0; col < matrixMain.sizeRow+1; col++) {
-            if (pieceCurrent.positionRow === row && pieceCurrent.positionCol == col) {
-                console.log("tuuuu", pieceCurrent.positionRow, row)
-
+    for (let row = 0; row < matrixMain.sizeX; row++) {
+        for (let col = 0; col < matrixMain.sizeY; col++) {
+            if (pieceCurrent.positionX === row && pieceCurrent.positionY == col) {
                 for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
                     for (let colPiece = 0; colPiece < 4; colPiece++) {
                         if (pieceCurrent.area.matrix01[colPiece][rowPiece] === 2) {
-                            
-                            const r=row + rowPiece;
-                            const c=col + colPiece
-                            matrixMain.matrix01[c][r] = 3;
-
+                            matrixMain.matrix01[row + rowPiece][col + colPiece] = 3;
                         }
                     }
                 }
@@ -369,36 +357,6 @@ let pieceCurrent;
 let pieceNext;
 let matrixMain;
 let int;
-
-function fun() {
-    isPieceActive = 1;
-    isBottom = pieceCurrent.moveDown(matrixMain);
-    if (!isBottom) {
-        pieceFixed = pieceCurrent.fix();
-        matrixMain.fix(pieceFixed);
-        matrixMain.pointsTotal += 10;
-        matrixMain.pointsDraw();
-        matrixMain.deleteRow();
-    }
-    matrixMain.update()
-    if (isBottom) {
-        placePiece(matrixMain, pieceCurrent)
-        //console.log("place")
-    }
-    if (!isBottom) {
-        if (pieceCurrent.positionRow === 0) {
-            window.clearInterval(int);
-        } else {
-            pieceCurrent = pieceNext;
-            pieceNext = new Piece();
-        }
-    }
-    drawMatrix(matrixMain.matrix01);
-    drawPiece(pieceNext)
-    pieceNext.matrixDraw()
-    matrixMain.matrixDraw()
-}
-
 playOnClick = () => {
     if (int) {
         window.clearInterval(int)
@@ -410,7 +368,7 @@ playOnClick = () => {
     if (isPieceActive) {
         pieceCurrent = new Piece();
         pieceNext = new Piece();
-        drawPiece(pieceNext)
+        drawPiece(pieceNext.area.matrix01, pieceNext.shape)
     }
     placePiece(matrixMain, pieceCurrent)
     for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
@@ -420,18 +378,32 @@ playOnClick = () => {
             }
         }
     }
-    int = window.setInterval(fun, delay);
-}
-let pClick = 0
+    int = window.setInterval(function () {
+        isPieceActive = 1;
+        isBottom = pieceCurrent.moveDown(matrixMain);
+        if (!isBottom) {
+            pieceFixed = pieceCurrent.fix();
+            matrixMain.fix(pieceFixed);
+            matrixMain.pointsTotal += 10;
+            matrixMain.pointsDraw();
+            matrixMain.deleteRow();
+        }
+        matrixMain.update()
+        if (isBottom) {
+            placePiece(matrixMain, pieceCurrent)
+        }
+        if (!isBottom) {
+            if (pieceCurrent.positionX === 0) {
+                window.clearInterval(int);
+            } else {
+                pieceCurrent = pieceNext;
+                pieceNext = new Piece();
+            }
+        }
+        drawMatrix(matrixMain.matrix01);
+        drawPiece(pieceNext.area.matrix01, pieceNext.shape)
 
-pauseButton = () => {
-    pClick++;
-    if (pClick % 2 == 1) {
-        clearInterval(int)
-    } else {
-        int = window.setInterval(fun, delay);
-
-    }
+    }, delay);
 }
 
 document.addEventListener("keydown", function (event) {
@@ -455,7 +427,6 @@ document.addEventListener("keydown", function (event) {
         case "Escape":
             break;
         case "p":
-            pauseButton();
             break;
     }
 })
@@ -491,9 +462,7 @@ matrixMain2 = new Matrix(20, 10);
 matrixMain2.draw01();
 drawMatrix(matrixMain2.matrix01);
 
-drawPiece = (pieceNext) => {
-    pieceNext.matrixDraw()
-
+drawPiece = (pieceNext, shape) => {
     const container = document.getElementById('next-piece');
     let piece = document.getElementById('piece');
     if (piece) {
@@ -502,22 +471,20 @@ drawPiece = (pieceNext) => {
     piece = document.createElement('table');
     piece.id = "piece";
     let tbdy = document.createElement('tbody');
-
-    for (let row = 0; row < pieceNext.area.sizeRow; row++) {
+    for (let i = 0; i < pieceNext.length; i++) {
         const tr = document.createElement('tr');
-
-        for (let col = 0; col < pieceNext.area.sizeCol; col++) {
+        for (let j = 0; j < pieceNext[0].length; j++) {
             const td = document.createElement('td');
-            if (pieceNext.area.matrix01[row][col] == 2) {
+            if (pieceNext[j][i] != 0) {
                 td.className = "next-piece";
             } else {
-                td.className = "piece-background";
+                td.className = "none";
+
             }
             tr.appendChild(td);
         }
         tbdy.appendChild(tr);
     }
-
     piece.appendChild(tbdy);
     container.appendChild(piece)
 }
