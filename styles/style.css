@@ -108,6 +108,10 @@ td {
     background-color: rgb(255, 0, 140);
 
 }
+.next-piece-background{
+    background-color: rgb(104, 104, 104);
+
+}
 
 .piece-background{
     background-color: rgba(82, 82, 82,90);

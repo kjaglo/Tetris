@@ -478,7 +478,7 @@ drawPiece = (pieceNext, shape) => {
             if (pieceNext[j][i] != 0) {
                 td.className = "next-piece";
             } else {
-                td.className = "none";
+                td.className = "next-piece-background";
 
             }
             tr.appendChild(td);
