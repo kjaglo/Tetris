@@ -230,10 +230,14 @@ class Piece {
     moveUp() {
 
         const pressNumber = this.press[this.shape]++;
-        this.position = this.positions[this.shape][pressNumber % this.positions[this.shape].length];
-        this.area.matrixReset()
-        for (let i of this.position) {
-            this.area.matrix01[i.y][i.x] = 2;
+        console.log("pos", this.positionY)
+
+        if (this.positionY < 6) {
+            this.position = this.positions[this.shape][pressNumber % this.positions[this.shape].length];
+            this.area.matrixReset()
+            for (let i of this.position) {
+                this.area.matrix01[i.y][i.x] = 2;
+            }
         }
     }
 
@@ -332,6 +336,7 @@ class Piece {
         let positionType = positionTypes[piecerotation];
         for (let i of positionType) {
             this.area.matrix01[i.y][i.x] = 2;
+
         }
     }
 }
