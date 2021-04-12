@@ -18,16 +18,16 @@ Using arrows you can move the blocks around, either left to right and you can ro
 
 <img src="pictures/tetris1.PNG"
      alt="Start"
-     style="width: 400px; height: 1000px"/>
+     style="width: 200px; height: 400px"/>
 
 ### Play mode
 
 <img src="pictures/tetris2.PNG"
      alt="Play mode"
-    style="width: 400px; height: 1000px"/>
+    style="width: 200px; height: 400px"/>
 
 
 <img src="pictures/tetris3.PNG"
      alt="Play mode"
-    style="width: 400px; height: 1000px"/>
+    style="width: 200px; height: 400px"/>
 
