@@ -268,8 +268,14 @@ class Piece {
                     if (matrixMain.matrix01[this.positionX + 4][this.positionY + i] === 4 || matrixMain.matrix01[this.positionX + 3][this.positionY + i] === 4) {
                         downCollision++;
                         if (this.positionX === 1) {
-                            alert("gameover")
                             clearInterval(int)
+
+                            let yourName;
+                            do {
+                                yourName = prompt("What's your name?");
+                            } while (!yourName);
+                            let pointsTotal = 0
+                            alert("GAME OV+ER" + yourName + "\nTotal points: " + pointsTotal)
                         }
                     }
                 }
