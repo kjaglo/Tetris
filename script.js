@@ -26,10 +26,6 @@ class Matrix {
         }
     }
 
-    update() {
-        this.matrixReset()
-    }
-
     matrixDraw() {
         if (document.querySelector("#test")) {
             document.querySelector("#test").remove();
@@ -242,7 +238,6 @@ class Piece {
     }
 
     moveDown(matrixMain) {
-        let posMax = 19;
 
         if (this.positionX !== 16) {
             let a;
@@ -311,11 +306,6 @@ class Piece {
                 this.area.matrix01[row][col] = 0;
             }
         }
-    }
-
-    update() {
-        this.area.matrixReset()
-        this.area.matrix01[this.positionY][this.positionX] = 1;
     }
 
     matrixDraw() {
@@ -399,7 +389,7 @@ playOnClick = () => {
             matrixMain.pointsDraw();
             matrixMain.deleteRow();
         }
-        matrixMain.update()
+        matrixMain.matrixReset()
         if (isBottom) {
             placePiece(matrixMain, pieceCurrent)
         }
