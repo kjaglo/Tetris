@@ -270,7 +270,7 @@ class Piece {
                                 yourName = prompt("What's your name?");
                             } while (!yourName);
                             let pointsTotal = 0
-                            alert("GAME OV+ER" + yourName + "\nTotal points: " + pointsTotal)
+                            alert("GAME OVER\n" + yourName + "\nTotal points: " + pointsTotal)
                         }
                     }
                 }
@@ -353,7 +353,7 @@ placePiece = (matrixMain, pieceCurrent) => {
     }
 }
 
-let delay = 1000;
+let delay = 200;
 let pieceCurrent;
 let pieceNext;
 let matrixMain;
@@ -413,18 +413,18 @@ document.addEventListener("keydown", function (event) {
         case "ArrowUp":
             pieceCurrent.moveUp();
             break;
-        case "ArrowDown":
-            pieceCurrent.moveDown(matrixMain);
-            break;
+        // case "ArrowDown":
+        //     pieceCurrent.moveDown(matrixMain);
+        //     break;
         case "ArrowLeft":
             pieceCurrent.moveLeft();
             break;
         case "ArrowRight":
             pieceCurrent.moveRight();
             break;
-        case " ":
-            pieceCurrent.moveBottom();
-            break;
+        // case " ":
+        //     pieceCurrent.moveBottom();
+        //     break;
         case "Escape":
             break;
         case "p":
