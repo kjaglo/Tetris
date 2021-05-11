@@ -353,12 +353,13 @@ placePiece = (matrixMain, pieceCurrent) => {
     }
 }
 
-let delay = 200;
+let delay = 500;
 let pieceCurrent;
 let pieceNext;
 let matrixMain;
 let int;
 playOnClick = () => {
+    document.getElementById("play-btn").blur();
     if (int) {
         window.clearInterval(int)
     }
