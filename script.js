@@ -413,18 +413,18 @@ document.addEventListener("keydown", function (event) {
         case "ArrowUp":
             pieceCurrent.moveUp();
             break;
-        // case "ArrowDown":
-        //     pieceCurrent.moveDown(matrixMain);
-        //     break;
+        case "ArrowDown":
+            pieceCurrent.moveDown(matrixMain);
+            break;
         case "ArrowLeft":
             pieceCurrent.moveLeft();
             break;
         case "ArrowRight":
             pieceCurrent.moveRight();
             break;
-        // case " ":
-        //     pieceCurrent.moveBottom();
-        //     break;
+        case " ":
+            pieceCurrent.moveBottom();
+            break;
         case "Escape":
             break;
         case "p":
