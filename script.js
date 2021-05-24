@@ -393,11 +393,12 @@ playOnClick = () => {
             matrixMain.pointsDraw();
             matrixMain.deleteRow();
         }
-        
+
         matrixMain.matrixReset()
         if (isBottom) {
             placePiece(matrixMain, pieceCurrent)
         }
+
         if (!isBottom) {
             if (pieceCurrent.positionX === 0) {
                 window.clearInterval(int);
@@ -418,20 +419,26 @@ document.addEventListener("keydown", function (event) {
         case "ArrowUp":
             pieceCurrent.moveUp();
             break;
+
         case "ArrowDown":
             pieceCurrent.moveDown(matrixMain);
             break;
+
         case "ArrowLeft":
             pieceCurrent.moveLeft();
             break;
+
         case "ArrowRight":
             pieceCurrent.moveRight();
             break;
+
         case " ":
             pieceCurrent.moveBottom();
             break;
+
         case "Escape":
             break;
+            
         case "p":
             break;
     }
