@@ -358,6 +358,7 @@ let pieceCurrent;
 let pieceNext;
 let matrixMain;
 let int;
+
 playOnClick = () => {
     document.getElementById("play-btn").blur();
     if (int) {
@@ -372,6 +373,7 @@ playOnClick = () => {
         pieceNext = new Piece();
         drawPiece(pieceNext.area.matrix01, pieceNext.shape)
     }
+
     placePiece(matrixMain, pieceCurrent)
     for (let rowPiece = 0; rowPiece < 4; rowPiece++) {
         for (let colPiece = 0; colPiece < 4; colPiece++) {
@@ -380,6 +382,7 @@ playOnClick = () => {
             }
         }
     }
+
     int = window.setInterval(function () {
         isPieceActive = 1;
         isBottom = pieceCurrent.moveDown(matrixMain);
@@ -390,6 +393,7 @@ playOnClick = () => {
             matrixMain.pointsDraw();
             matrixMain.deleteRow();
         }
+        
         matrixMain.matrixReset()
         if (isBottom) {
             placePiece(matrixMain, pieceCurrent)
