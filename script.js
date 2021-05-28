@@ -450,6 +450,7 @@ drawMatrix = (matrixMain) => {
     if (matrix) {
         matrix.remove();
     }
+    
     matrix = document.createElement('table');
     matrix.id = "matrix";
     let tbdy = document.createElement('tbody');
