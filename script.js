@@ -106,7 +106,6 @@ class Piece {
         this.area.draw01();
         this.press = [1, 1, 1, 1, 1, 1, 1];
         this.shape = Math.round(Math.random() * 10) % 7;
-        console.log(this.shape)
         this.positions = [];
         if (this.shape == 0) {
             this.positionY = 3;
@@ -269,8 +268,9 @@ class Piece {
                             do {
                                 yourName = prompt("What's your name?");
                             } while (!yourName);
-                            let pointsTotal = 0
-                            alert("GAME OVER\n" + yourName + "\nTotal points: " + pointsTotal)
+                            
+                            alert("GAME OVER\n" + yourName + "\nTotal points: " +  (matrixMain.pointsTotal+10))
+
                         }
                     }
                 }

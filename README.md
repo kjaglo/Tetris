@@ -59,22 +59,15 @@ Using arrows you can move the blocks around, either left to right and you can ro
 
 ### Start
 
-<img src="pictures/tetris1.PNG"
-     alt="Start"
-     width="200" 
-     height="400"/>
+<p align="center">
+<img src="pictures/tetris_start.png" alt="Start" width="200" height="400"/>
+</p>
 
 ### Play mode
 
-<img src="pictures/tetris2.PNG"
-     alt="Play mode"
-     width="200" 
-     height="400"/>
-
-
-<img src="pictures/tetris3.PNG"
-     alt="Play mode"
-     width="200" 
-     height="400"/>
+<p align="center">
+<img src="pictures/tetris_play_start.png" alt="Play mode" width="200" height="400"/>
+<img src="pictures/tetris_play.png" alt="Play mode" width="200" height="400"/>
+</p>
 
 Enjoy the challenge of aligning blocks and strive for the highest score! Have fun playing Tetris!

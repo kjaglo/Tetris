@@ -26,11 +26,16 @@
     background-color: rgb(49, 218, 189);
     margin-bottom: 20px;
     color:white;
+    border-radius: 5px;
 }
 
 #container, #container2{
     width: 360px;
     height: 600px;
+    margin: auto;
+}
+
+#matrix{
     margin: auto;
 }
 
